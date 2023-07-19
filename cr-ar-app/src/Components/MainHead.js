@@ -45,16 +45,6 @@ function MainHead({title,searchTitle,isBtn}) {
           )}
           </div>
       </div>
-      <div className="box-1">
-        <div className="dropdown-wrapper">
-          <div className="h-1">
-            <DropDown/>
-          </div>
-        </div>
-        <div>
-
-        </div>
-      </div>
     </>
   );
 }

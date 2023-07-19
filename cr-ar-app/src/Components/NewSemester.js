@@ -96,11 +96,6 @@ function NewSemester() {
         </div>
       </div>
       <div className="button-button-wrapper-1">
-        <div className="hn2">
-          <div className="h-n">
-            <DropDown />
-          </div>
-        </div>
         <div className="button-wrapper-1">
           <div className="button-h2">
             <button
