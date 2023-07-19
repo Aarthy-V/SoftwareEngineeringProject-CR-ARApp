@@ -79,7 +79,7 @@ app.post("/coursesUpdated", (req, res) => {
   OfferedSem = req.body.OfferedSem;
   OfferedDeptID = req.body.OfferedDeptID;
   const sql =
-  "SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  "SELECT * FROM course WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
 ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result) => {
     if (err) {
