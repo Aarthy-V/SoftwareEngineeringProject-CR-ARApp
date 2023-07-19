@@ -42,7 +42,7 @@ import ExtraFeatureButton from "./ExtraFeatureButton";
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"}
   ];*/
   
-  const colNames = ['Code','Name','Credit','Core/Technical','Coordinator','Prerequiste','Offered sem','Offered Dept','AC yr','Sem start Date', 'Sem End Date'];
+  const colNames = ['Course Code','Course Name','Credit','Core/Technical','Coordinator','Prerequiste','Offered semester','Offered Dept Name','AC yr','Sem start Date', 'Sem End Date'];
     
   
   const [Data, setData] = useState([]);
