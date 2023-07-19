@@ -66,17 +66,7 @@ function Student() {
     },
   ];
 
-  const colNames = [
-    "Registration_No",
-    "Name",
-    "EC1011",
-    "EC1021",
-    "EC10218",
-    "EC1022",
-    "EC1078",
-    "Advisor",
-    "View",
-  ];
+ 
 
   const [Data, setData] = useState([]);
 
@@ -88,6 +78,26 @@ function Student() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const [data, setData2] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3300/STcourse")
+      .then((res) => res.json())
+      .then((data) => {
+        setData2(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const colNames = [
+    "Registration_No",
+    "Name",
+    ...data, // Replace with the updated variable name storing the "CourseCode" values
+    "Advisor",
+    "View",
+  ];
+  
 
   return (
     <div>
