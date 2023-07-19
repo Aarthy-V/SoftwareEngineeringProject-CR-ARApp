@@ -2,7 +2,7 @@ import "../Styles/StudentStyle.css";
 import SearchBar from "./SearchBar";
 import NewStudentButton from "./NewStudentButton";
 import DropDownYear from "./DropDownYear";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/main.css";
 import "../Styles/HomeStyles.css";
 import"../Styles/NewSemesterStyles.css";
@@ -78,11 +78,22 @@ function Student() {
     "View",
   ];
 
+  const [Data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3300/student")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
       <MainHead title="Students" searchTitle="Search Students..." isBtn="1"/>
       <div className="table-wrapper">
-        <Table list={list} colNames={colNames} />
+        <Table list={Data} colNames={colNames} />
       </div>
     </div>
   );

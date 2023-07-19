@@ -27,6 +27,38 @@ app.get("/courseTable",(req, res)=>{
   });
 });
 
+app.get("/student", (req, res) => {
+  console.log("student table view");
+  let sql = "SELECT DISTINCT RegNo FROM student_cr_history";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+
+    const distinctRegNos = results.map((row) => row.RegNo);
+
+    let filledResults = [];
+    distinctRegNos.forEach((regNo) => {
+      let fullNameSql = "SELECT FullName FROM student_registration WHERE RegNo = ?";
+      db.query(fullNameSql, regNo, (err, fullNameResult) => {
+        if (err) return res.json(err);
+
+        filledResults.push({
+          RegNo: regNo,
+          FullName: fullNameResult[0].FullName,
+          // Assuming other columns in the front-end should be empty
+          Column2: "",
+          Column3: "",
+          // Add more columns if needed
+        });
+
+        if (filledResults.length === distinctRegNos.length) {
+          return res.json(filledResults);
+        }
+      });
+    });
+  });
+});
+
+
 app.get("/academicYear", (req, res) => {
   console.log("Academic Year Got");
   let sql = "SELECT DISTINCT AcYr FROM student_university_details";
