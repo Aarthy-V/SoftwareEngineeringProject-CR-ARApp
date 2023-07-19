@@ -91,9 +91,10 @@ function Student() {
 
   return (
     <div>
-      <MainHead title="Students" searchTitle="Search Students..." isBtn="1"/>
+      
       <div className="table-wrapper">
         <Table list={Data} colNames={colNames} />
+        <MainHead title="Students" searchTitle="Search Students..." isBtn="1"/>
       </div>
     </div>
   );

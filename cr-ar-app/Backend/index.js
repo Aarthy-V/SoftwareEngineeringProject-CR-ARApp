@@ -113,7 +113,8 @@ let updated1 = "";
 
 app.get("/CHupdated", (req, res) => {
   const sql =
-  "SELECT ch.Code,ch.Name,ch.Credit,ch.Core/Technical,ch.Coordinator,ch.Prerequisite,ch.Offered sem,ch.OfferedDeptID,ch.`AC yr`,ch.`Sem start Date`,ch.`Sem End Date`,d.DepName FROM course_history AS ch JOIN department AS d ON ch.OfferedDeptID = d.DepID";
+  //"SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,ch.`CoordinatorID`,ch.`PreRequesite`,ch.`OfferedSem`,d.`DepName`,ch.`AcYr`,ch.`SemStartDate`,ch.`SemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
@@ -128,3 +129,37 @@ app.get("/CHupdated", (req, res) => {
     return res.status(200).json(result1);
   });
 });
+
+// student table course column
+let updated2 = []; // Declare the updated2 variable as an empty array
+
+app.get("/STcourse", (req, res) => {
+  const { OfferedSem, OfferedDeptID } = req.query;
+
+  const sql = " SELECT CourseCode FROM curriculum WHERE OfferedSem = ? AND OfferedDeptID = ? ";
+
+  db.query(sql, [OfferedSem, OfferedDeptID], (err, result2) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Student table updated successfully");
+    console.log("Result:", result2);
+
+    // Extracting the CourseCode values from the result
+    const courseCodes = result2.map((item) => item.CourseCode);
+
+    // Storing the CourseCode values in the "updated2" variable
+    updated2 = courseCodes;
+
+    // Send the result as a response to the client
+    return res.status(200).json(result2);
+  });
+});
+
+
+
+
+
+
