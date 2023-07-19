@@ -28,7 +28,7 @@ function DropDown({ year, semester, department }) {
     },
     {
       value: "D003",
-      label: "Electrical and Electronic Engineerin",
+      label: "Electrical and Electronic Engineering",
     },
     { value: "D004", label: "Mechanical Engineering" },
     { value: "D005", label: "Inter Disciplinary Studies" },

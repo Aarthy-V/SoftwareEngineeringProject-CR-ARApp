@@ -113,7 +113,8 @@ let updated1 = "";
 
 app.get("/CHupdated", (req, res) => {
   const sql =
-  "SELECT ch.Code,ch.Name,ch.Credit,ch.Core/Technical,ch.Coordinator,ch.Prerequisite,ch.Offered sem,ch.OfferedDeptID,ch.`AC yr`,ch.`Sem start Date`,ch.`Sem End Date`,d.DepName FROM course_history AS ch JOIN department AS d ON ch.OfferedDeptID = d.DepID";
+  //"SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,ch.`CoordinatorID`,ch.`PreRequesite`,ch.`OfferedSem`,d.`DepName`,ch.`AcYr`,ch.`SemStartDate`,ch.`SemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
