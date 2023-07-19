@@ -47,7 +47,7 @@ app.post("/coursesUpdated", (req, res) => {
   OfferedSem = req.body.OfferedSem;
   OfferedDeptID = req.body.OfferedDeptID;
   const sql =
-  "SELECT ch.Code,ch.Name,ch.Credit,ch.Core/Technical,ch.Coordinator,ch.Prerequisite,ch.Offered sem,ch.OfferedDeptID,ch.`AC yr`,ch.`Sem start Date`,ch.`Sem End Date`,d.DepName FROM course_history AS ch JOIN department AS d ON ch.OfferedDeptID = d.DepID";
+  "SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
 ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result) => {
     if (err) {
@@ -81,7 +81,7 @@ let updated1 = "";
 
 app.get("/CHupdated", (req, res) => {
   const sql =
-    "SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  "SELECT ch.Code,ch.Name,ch.Credit,ch.Core/Technical,ch.Coordinator,ch.Prerequisite,ch.Offered sem,ch.OfferedDeptID,ch.`AC yr`,ch.`Sem start Date`,ch.`Sem End Date`,d.DepName FROM course_history AS ch JOIN department AS d ON ch.OfferedDeptID = d.DepID";
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
