@@ -27,36 +27,7 @@ app.get("/courseTable",(req, res)=>{
   });
 });
 
-app.get("/student", (req, res) => {
-  console.log("student table view");
-  let sql = "SELECT DISTINCT RegNo FROM student_cr_history";
-  db.query(sql, (err, results) => {
-    if (err) return res.json(err);
 
-    const distinctRegNos = results.map((row) => row.RegNo);
-
-    let filledResults = [];
-    distinctRegNos.forEach((regNo) => {
-      let fullNameSql = "SELECT FullName FROM student_registration WHERE RegNo = ?";
-      db.query(fullNameSql, regNo, (err, fullNameResult) => {
-        if (err) return res.json(err);
-
-        filledResults.push({
-          RegNo: regNo,
-          FullName: fullNameResult[0].FullName,
-          // Assuming other columns in the front-end should be empty
-          Column2: "",
-          Column3: "",
-          // Add more columns if needed
-        });
-
-        if (filledResults.length === distinctRegNos.length) {
-          return res.json(filledResults);
-        }
-      });
-    });
-  });
-});
 
 
 app.get("/academicYear", (req, res) => {
@@ -130,15 +101,46 @@ app.get("/CHupdated", (req, res) => {
   });
 });
 
+//student details 
+
+app.get("/student", (req, res) => {
+  console.log("student table view");
+  let sql = "SELECT DISTINCT RegNo FROM student_cr_history";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+
+    const distinctRegNos = results.map((row) => row.RegNo);
+
+    let filledResults = [];
+    distinctRegNos.forEach((regNo) => {
+      let fullNameSql = "SELECT FullName FROM student_registration WHERE RegNo = ?";
+      db.query(fullNameSql, regNo, (err, fullNameResult) => {
+        if (err) return res.json(err);
+
+        filledResults.push({
+          RegNo: regNo,
+          FullName: fullNameResult[0].FullName,
+          // Assuming other columns in the front-end should be empty
+          Column2: "",
+          Column3: "",
+          // Add more columns if needed
+        });
+
+        if (filledResults.length === distinctRegNos.length) {
+          return res.json(filledResults);
+        }
+      });
+    });
+  });
+});
+
 // student table course column
-let updated2 = []; // Declare the updated2 variable as an empty array
+let updated2 = ""; // Declare the updated2 variable as an empty array
 
 app.get("/STcourse", (req, res) => {
-  const { OfferedSem, OfferedDeptID } = req.query;
+  const sql = " SELECT CourseCode FROM course_history WHERE AcYr = ? AND OfferedSem = ? AND OfferedDeptID = ? ";
 
-  const sql = " SELECT CourseCode FROM curriculum WHERE OfferedSem = ? AND OfferedDeptID = ? ";
-
-  db.query(sql, [OfferedSem, OfferedDeptID], (err, result2) => {
+  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result2) => {
     if (err) {
       console.log("Error:", err);
       return res.status(500).json({ error: "Database error" });
@@ -154,9 +156,11 @@ app.get("/STcourse", (req, res) => {
     updated2 = courseCodes;
 
     // Send the result as a response to the client
-    return res.status(200).json(result2);
+    return res.status(200).json(courseCodes);
   });
+  
 });
+
 
 
 
