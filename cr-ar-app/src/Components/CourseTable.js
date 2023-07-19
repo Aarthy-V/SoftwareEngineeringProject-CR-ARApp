@@ -32,7 +32,7 @@ import ExtraFeatureButton from "./ExtraFeatureButton";
     const handleExtra = (viewing) =>{
       console.log('view:', viewing);
     }
-    const list = [
+    /*const list = [
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"},
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"},
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"},
@@ -40,15 +40,15 @@ import ExtraFeatureButton from "./ExtraFeatureButton";
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"},
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"},
     { Course: "Software Construction",Code: "EC1010",Credit: "3",Core: "Core",Coordinator: "jananie",Prerequiste: "Operating System", RegistrationDate: "10.01.2023-30.01.2023", Status: "Close"}
-  ];
+  ];*/
   
-  const colNames = ['Code','Name','Credit','Core/Technical','Coordinator','Prerequiste','Offered sem','Offered Dept ID','AC yr','Sem start Date', 'Sem End Date'];
+  const colNames = ['Code','Name','Credit','Core/Technical','Coordinator','Prerequiste','Offered sem','Offered Dept','AC yr','Sem start Date', 'Sem End Date'];
     
   
   const [Data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3300/courseTable")
+    fetch("http://localhost:3300/CHupdated")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

@@ -17,7 +17,7 @@ app.get("/courses",(req, res) => {
     return res.json(results);
   });
 });
-
+// course history
 app.get("/courseTable",(req, res)=>{
   console.log("course table view");
   let sql="SELECT * FROM course_history";
@@ -68,14 +68,19 @@ app.get("/academicYear", (req, res) => {
   });
 });
 
+// New semester course details
 let updated = "Hi";
+let AcYr = "";
+let OfferedSem = "";
+let OfferedDeptID = "";
 
 app.post("/coursesUpdated", (req, res) => {
-  const AcYr = req.body.AcYr;
-  const OfferedSem = req.body.OfferedSem;
-  const OfferedDeptID = req.body.OfferedDeptID;
+  AcYr = req.body.AcYr;
+  OfferedSem = req.body.OfferedSem;
+  OfferedDeptID = req.body.OfferedDeptID;
   const sql =
-    "SELECT * FROM course WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  "SELECT ch.Code,ch.Name,ch.Credit,ch.Core/Technical,ch.Coordinator,ch.Prerequisite,ch.Offered sem,ch.OfferedDeptID,ch.`AC yr`,ch.`Sem start Date`,ch.`Sem End Date`,d.DepName FROM course_history AS ch JOIN department AS d ON ch.OfferedDeptID = d.DepID";
+;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result) => {
     if (err) {
       console.log("Error:", err);
@@ -103,3 +108,23 @@ app.listen(3300, function () {
   });
 });
 
+// course offered history
+let updated1 = "";
+
+app.get("/CHupdated", (req, res) => {
+  const sql =
+    "SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
+  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Courses history table updated successfully");
+    console.log("Result:", result1);
+
+    // Send the result as a response to the client
+    updated1 = result1;
+    return res.status(200).json(result1);
+  });
+});
