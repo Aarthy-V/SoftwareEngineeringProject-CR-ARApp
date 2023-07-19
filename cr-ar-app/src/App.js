@@ -17,9 +17,17 @@ import { Route,Routes } from "react-router-dom";
 import DropDown from "./Components/DropDown";
 import MainHead from "./Components/MainHead";
 import SecondaryHome from "./Components/SecondaryHome";
+import MHome from "./Components/MHome";
+import { useLocation } from "react-router-dom";
+import "./App.css";
 
 
 function App() {
+  const location = useLocation();
+  const { pathname } = location;
+
+  const isHome = pathname === "/";
+
   return (
     <>
       <header>
@@ -33,7 +41,7 @@ function App() {
         <Route path="/advisors" element={<Advisor />}></Route>
         <Route path="/newsemester" element={<NewSemester />}></Route>
       </Routes>
-      <SecondaryHome />
+      {!isHome && <SecondaryHome />}
     </>
   );
 }

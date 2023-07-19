@@ -6,10 +6,13 @@ import DropDownSemester from "./DropDownSemester";
 import studentImage from "../Images/student-1.jpg";
 import newstudentImage from "../Images/newstudent.jpg";
 import viewStudentImage from "../Images/viewStudent.jpg";
+import Student from "./Student";
 import DropDown from "./DropDown";
+import { Route, Routes, Link } from "react-router-dom";
 
 function Home() {
-    return (
+  return (
+    <>
       <div className="home">
         <div className="front"></div>
         <div className="h1-h1x">
@@ -29,12 +32,12 @@ function Home() {
         </div>
         <div className="box">
           <div className="button-wrapper">
-            <div className="button">
-              <a className="text-wrapper-3" href="/#">
+            <Link className="button" to="/students">
+              <Link className="text-wrapper-3" to="/students">
                 Lets go
-              </a>
+              </Link>
               <i class="fa fa-arrow-right"></i>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="topBox">Welcome Gowsikan</div>
@@ -48,12 +51,17 @@ function Home() {
         <div className="dropdown-container">
           <div className="dropdown-w1">
             <div className="dropdown-wrapper">
-              <DropDown/>
+              <DropDown />
             </div>
           </div>
         </div>
       </div>
-    );
+
+      <Routes>
+        <Route path="/students" element={<Student />}></Route>
+      </Routes>
+    </>
+  );
 }
 
 export default Home;

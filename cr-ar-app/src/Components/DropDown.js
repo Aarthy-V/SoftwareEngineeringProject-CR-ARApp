@@ -81,7 +81,6 @@ function DropDown({ year, semester, department }) {
       OfferedDeptID: value3.value,
     })
     .then(() => {
-      alert("successful read");
     })
     .catch((error) => {
       console.error("Error submitting review:", error);
