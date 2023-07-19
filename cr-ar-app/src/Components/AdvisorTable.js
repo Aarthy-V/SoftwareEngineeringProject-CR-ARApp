@@ -23,7 +23,7 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
                                 <td>
                                 <label>
                                     <input type="checkbox"/>
-                                    <span class="checkbox"></span>
+                                    <span className="checkbox"></span>
                                 </label>
                                 </td>
                                 {Object.values(obj).map((value,index2) => (
