@@ -128,3 +128,37 @@ app.get("/CHupdated", (req, res) => {
     return res.status(200).json(result1);
   });
 });
+
+// student table course column
+let updated2 = []; // Declare the updated2 variable as an empty array
+
+app.get("/STcourse", (req, res) => {
+  const { OfferedSem, OfferedDeptID } = req.query;
+
+  const sql = " SELECT CourseCode FROM curriculum WHERE OfferedSem = ? AND OfferedDeptID = ? ";
+
+  db.query(sql, [OfferedSem, OfferedDeptID], (err, result2) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Student table updated successfully");
+    console.log("Result:", result2);
+
+    // Extracting the CourseCode values from the result
+    const courseCodes = result2.map((item) => item.CourseCode);
+
+    // Storing the CourseCode values in the "updated2" variable
+    updated2 = courseCodes;
+
+    // Send the result as a response to the client
+    return res.status(200).json(result2);
+  });
+});
+
+
+
+
+
+
