@@ -7,4 +7,14 @@
     height: 100vh; /* Set a specific height or use min-height: 100vh; to cover the full viewport height */
 }
 
-
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #16dbc7;
+    height: 300px;
+    width: 500px;
+    cursor: pointer;
+    border-radius: 5px;
+}
