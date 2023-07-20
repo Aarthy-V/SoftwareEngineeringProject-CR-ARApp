@@ -1,0 +1,8 @@
+/* Apply CSS to center the container horizontally and vertically */
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set a specific height or use min-height: 100vh; to cover the full viewport height */
+}
