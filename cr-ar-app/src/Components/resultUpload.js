@@ -39,14 +39,14 @@ function ResultUpload() {
             <main>
             <h2>Upload the result</h2>
             <form 
-            onClick={()=> document.querySelector("input-field").click()}
+            onClick={()=> document.querySelector(".input-field").click()}
             >
-                <input type="file" accept="image/*" className="input-field" hidden
+                <input type="file" accept=".pdf, image/*" className="input-field" hidden
                 onChange={({target:{files}})=>{
                     files[0] && setFile(files[0].name)
                     if(files){
                         setImage(URL.createObjectURL(files[0]))
-                    }
+                    } 
                 }}
                 
                 />
@@ -63,11 +63,16 @@ function ResultUpload() {
                 }
                 
             </form>
-            <section>
+            <section className="uploaded-row">
                <AiFillFileImage color="#1475cf"/>
-               <span>
-                    {file}
-                    <MdDelete/>
+               <span className="upload-content">
+                    {file} -
+                    <MdDelete
+                    onClick={()=>{
+                        setFile("No selected file")
+                        setImage(null);
+                    }}
+                    />
                 </span> 
             </section>
             </main>   
