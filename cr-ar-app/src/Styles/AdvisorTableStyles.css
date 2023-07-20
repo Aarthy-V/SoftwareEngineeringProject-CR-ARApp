@@ -4,7 +4,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 110vh;
     background-color: #F2F8FF;
 }
 
@@ -15,17 +14,23 @@
     table-layout: fixed;
     border-radius: 10px;
     white-space: nowrap;
-    width: 80em;
-    max-width: 80%;
+    max-height: 710px;
+    width: 90%;
+    max-width: 100%;
+    overflow-y: scroll;
     margin: auto;
-    overflow-x: auto;
-    left: 20px; 
-    top: 30px;
+    filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.2));
+    position: fixed;
+    top: 240px;
+    left: 16%;
 }
 
 .advtable thead{
     background-color: var(--white, #FFF);
     color: var(--gray, #69686A);
+    position: sticky; /* Keep the header fixed */
+    top: 0px; /* Position it at the top of the wrapper */
+    z-index: 1;
 }
 
 
@@ -62,7 +67,7 @@
 
 .advtable td{
     border-top: 0.5px solid #ddd;
-    overflow: hidden;
+    overflow-y: hidden;
     text-overflow: ellipsis; 
 }
 
@@ -72,5 +77,5 @@
 }
 
 .advexpand{
-    width: 100%;
+    width: 16%;
 }
