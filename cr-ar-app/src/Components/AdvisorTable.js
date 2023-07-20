@@ -4,7 +4,7 @@ import "../Styles/Tickbox.css";
 
 function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
     return (
-        <div>
+        <>
         <div className="advtable-wrapper">
             {list.length > 0 && (
                 <table className="advtable">
@@ -38,7 +38,7 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
                 </table>
             )}
         </div>
-        </div>
+        </>
     );
 }
 
