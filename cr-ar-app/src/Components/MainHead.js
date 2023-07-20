@@ -27,7 +27,7 @@ function MainHead({title,searchTitle,isBtn}) {
         <div className="search-bar-search-search_box">
           <SearchBar onSearch={handleSearch} name={searchTitle} />
         </div>
-        
+
         <div className="search-bar-button">
           {isBtn == 1 && (
             <div className="search-bar-frame">
@@ -35,7 +35,7 @@ function MainHead({title,searchTitle,isBtn}) {
                 <div className="rectangle-wrapper">
                   <button className="rectangle" onClick={handleNewStudent}>
                     <FiPlus className="plus-icon" />
-                    <a className="text-wrapper-3" href="/#">
+                    <a className="text-wrapper-3" href="/courses">
                       New Student
                     </a>
                   </button>
@@ -43,8 +43,9 @@ function MainHead({title,searchTitle,isBtn}) {
               </div>
             </div>
           )}
-          </div>
+        </div>
       </div>
+
     </>
   );
 }
