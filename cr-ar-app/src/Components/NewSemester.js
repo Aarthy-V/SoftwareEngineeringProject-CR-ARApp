@@ -26,6 +26,8 @@ function NewSemester() {
     "Status",
   ];
 
+  
+
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3300/updated")
@@ -47,7 +49,12 @@ function NewSemester() {
       })
       .catch((err) => console.log(err));
   }, []);
-  
+
+  const handleRemove = (targetIndex) => {
+    console.log("Button Clicked");
+    setData((prevData) => prevData.filter((_, idx) => idx !== targetIndex));
+  };
+
 
   return (
     <>
@@ -76,7 +83,7 @@ function NewSemester() {
                       ) : index2 === 3 && value === "Technical" ? (
                         <button className="label-technical">{value}</button>
                       ) : index2 === 6 ? (
-                        <button className="label-remove">Remove</button>
+                        <button className="label-remove" onClick={() => handleRemove(index)}>Remove</button>
                       ) : (
                         <span>{value}</span>
                       )}

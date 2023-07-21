@@ -1,0 +1,257 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.body-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F2F8FF;
+}
+
+.card {
+    position: relative;
+    width: 400px;
+    height: 190px;
+    background: rgba(255, 255, 255, 0.849);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+    margin: 10px;
+}
+
+.card:hover {
+    height: 450px;
+}
+
+.imgBx {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translate(-50%);
+    width: 150px;
+    height: 150px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.card:hover .imgBx {
+    width: 200px;
+    height: 200px;
+}
+
+.imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.card .content .details {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(180px);
+}
+
+.card:hover .content .details {
+    transform: translateY(0px);
+}
+
+.card .content .details h2 {
+    font-size: 0.6em;
+    font-weight: 600;
+    color: #696969;
+    line-height: 0.8em;
+    white-space: nowrap;
+}
+
+.card .content .details h2 span {
+    font-size: 0.7em;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.card .content .details .data {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+
+.card .content .details .data h5 {
+    font-size: 0.4em;
+    color: #555;
+    line-height: 1.2em;
+    font-weight: 600;
+}
+
+.card .content .details .data h5 span {
+    font-size: 0.8em;
+    font-weight: 100;
+    opacity: 0.9;
+}
+
+.card .content .details .actionBtn {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card .content .details .actionBtn button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 0.4em;
+    font-weight: 500;
+    background: #009687;
+    color: #fff;
+    cursor: pointer;
+}
+
+.card .content .details .actionBtn button:nth-child(2) {
+    border: 1px solid #999;
+    color: #999;
+    background: #fff;
+}
+
+.card-1 {
+    position: relative;
+    width: 400px;
+    height: 190px;
+    background: rgba(255, 255, 255, 0.849);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.10);
+    margin: 10px;
+    justify-content: center;
+    transition: 0.5s;
+    align-items: center;
+}
+
+.card-1:hover {
+    height: 450px;
+}
+
+.card-1 .content-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.card-1 .content-1 .details-1 {
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(380px);
+}
+
+.card-1:hover .content-1 .details-1 {
+    transform: translateY(0px);
+}
+
+.card-1 .content-1 .course-wrapper {
+    text-align: center;
+    padding-top: 1.4em;
+}
+
+.card-1 .content-1 h2 {
+    font-size: 1.5em;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-1 .content-1 .course-wrapper-2 {
+    text-align: left;
+    padding-left: 1.5em;
+    padding-top: 1.2em;
+    line-height: 3em;
+}
+
+.card-1 .content-1 h4 {
+    font-size: 1.2em;
+    color: #555;
+    opacity: 0.9;
+}
+
+.card-1 .content-1 .approved {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7em;
+    line-height: 1.99em;
+    margin: 1em;
+}
+
+.card-1 .content-1 .rectangle-322 {
+    background: rgba(5, 205, 153, 0.5);
+    border-radius: 8px;
+    width: 90px;
+    text-align: center;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.card-1 .content-1 .rectangle-322-red {
+    background: rgba(205, 5, 5, 0.5);
+    border-radius: 8px;
+    width: 90px;
+    text-align: center;
+    color: white;
+    margin-bottom: 1em;
+    white-space: nowrap;
+}
+
+
+.card-1 .content-1 .wrapper-3 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1em;
+    white-space: nowrap;
+}
+
+.card-2 {
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.849);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.10);
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-2 .content-2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-2 .content-2 .biodata-wrapper {
+    text-align: center;
+    padding-top: 1.4em;
+}
