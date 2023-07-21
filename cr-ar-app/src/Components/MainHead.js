@@ -6,6 +6,8 @@ import DropDownDepartment from "./DropDownDepartment";
 import DropDownSemester from "./DropDownSemester";
 import DropDownYear from "./DropDownYear";
 import DropDown from "./DropDown";
+import { Link, Route, Routes } from "react-router-dom";
+import StudentRegister from "./StudentRegister";
 
 function MainHead({title,searchTitle,isBtn}) {
     const handleSearch = (searchTerm) => {
@@ -35,9 +37,9 @@ function MainHead({title,searchTitle,isBtn}) {
                 <div className="rectangle-wrapper">
                   <button className="rectangle" onClick={handleNewStudent}>
                     <FiPlus className="plus-icon" />
-                    <a className="text-wrapper-3" href="/courses">
+                    <Link className="text-wrapper-3" to="/studentRegister">
                       New Student
-                    </a>
+                    </Link>
                   </button>
                 </div>
               </div>
@@ -45,7 +47,6 @@ function MainHead({title,searchTitle,isBtn}) {
           )}
         </div>
       </div>
-
     </>
   );
 }

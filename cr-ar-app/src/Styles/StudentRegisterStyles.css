@@ -1,9 +1,8 @@
 .stdreg-container{
     position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    top: 160px;
     display: flex;
     align-items: center;
     justify-content: center;

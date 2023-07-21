@@ -20,6 +20,7 @@ import SecondaryHome from "./Components/SecondaryHome";
 import MHome from "./Components/MHome";
 import { useLocation } from "react-router-dom";
 import "./App.css";
+import StudentRegister from "./Components/StudentRegister";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   const { pathname } = location;
 
   const isHome = pathname === "/";
+  const isRegistration = pathname === "/studentRegister";
 
   return (
     <>
@@ -40,8 +42,10 @@ function App() {
         <Route path="/courses" element={<CourseTable />}></Route>
         <Route path="/advisors" element={<Advisor />}></Route>
         <Route path="/newsemester" element={<NewSemester />}></Route>
+        <Route path="/studentRegister" element={<StudentRegister />}></Route>
       </Routes>
-      {!isHome && <SecondaryHome />}
+      {(!isHome && !isRegistration) && <SecondaryHome />}
+      
     </>
   );
 }
