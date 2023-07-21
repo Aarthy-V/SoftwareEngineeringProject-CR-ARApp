@@ -154,6 +154,32 @@ app.get("/STcourse", (req, res) => {
   
 });
 
+//Adv approval
+
+let updated4 = "";
+
+app.get("/AdvApproved", (req, res) => {
+  const sql = `
+    SELECT  cr.AdvApproved
+    FROM student_university_details AS sud
+    JOIN student_registration AS sr ON sud.RegNo = sr.RegNo
+    LEFT JOIN coursereg AS cr ON sr.RegNo = cr.RegNo
+    WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
+  `;
+
+  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result4) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("AdvApproved retrieved successfully");
+    console.log("Result:", result4);
+
+    // Send the result as a response to the client
+    return res.status(200).json(result4);
+  });
+});
 
 
 
