@@ -64,7 +64,7 @@ function ResultUpload() {
                 
             </form>
             <section className="uploaded-row">
-               <AiFillFileImage color="#1475cf"/>
+               <AiFillFileImage color="#009687"/>
                <span className="upload-content">
                     {file} -
                     <MdDelete
