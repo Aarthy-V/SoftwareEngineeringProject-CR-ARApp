@@ -33,7 +33,7 @@ function DropDown1() {
   useEffect(() => {
     if (value1) {
       // Fetch and set the options for Semester based on the selected Academic Year
-      fetch(`http://localhost:3300/semesters/${value1.value}`)
+      fetch(`http://localhost:3300/semesters/${encodeURIComponent(value1.value)}`)
         .then((res) => res.json())
         .then((data) => {
           // Assuming the response is an array of objects with value and label fields
@@ -48,7 +48,7 @@ function DropDown1() {
         .catch((err) => console.log(err));
 
       // Fetch and set the options for Department based on the selected Academic Year
-      fetch(`http://localhost:3300/departments/${value1.value}`)
+      fetch(`http://localhost:3300/departments/${encodeURIComponent(value1.value)}`)
         .then((res) => res.json())
         .then((data) => {
           // Assuming the response is an array of objects with value and label fields

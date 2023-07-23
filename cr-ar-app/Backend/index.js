@@ -42,6 +42,8 @@ app.get("/academicYear", (req, res) => {
 app.get("/semesters/:academicYear", (req, res) => {
   console.log("Semester Got");
   const academicYear = req.params.academicYear;
+  //const encodedacademicYear = encodeURIComponent(academicYear);
+  //console.log(academicYear);
   const query = `SELECT DISTINCT semester FROM dropdown WHERE AcYr = ?`;
   db.query(query, [academicYear], (err, results) => {
     if (err) {
@@ -55,6 +57,7 @@ app.get("/semesters/:academicYear", (req, res) => {
 app.get('/departments/:academicYear', (req, res) => {
   console.log("department Got");
   const academicYear = req.params.academicYear;
+  //const encodedacademicYear = encodeURIComponent(academicYear);
   const query = "SELECT DISTINCT dep.`DepName` FROM dropdown d JOIN department dep ON d.`DeptID` = dep.`DepID` WHERE AcYr = ?";
   db.query(query, [academicYear], (err, results) => {
     if (err) {
