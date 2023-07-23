@@ -32,12 +32,41 @@ app.get("/courseTable",(req, res)=>{
 
 app.get("/academicYear", (req, res) => {
   console.log("Academic Year Got");
-  let sql = "SELECT DISTINCT AcYr FROM student_university_details";
+  let sql = "SELECT DISTINCT AcYr FROM dropdown";
   db.query(sql, (err, results) => {
     if (err) return res.json(err);
     return res.json(results);
   });
 });
+
+app.get("/semesters/:academicYear", (req, res) => {
+  console.log("Semester Got");
+  const academicYear = req.params.academicYear;
+  const query = `SELECT DISTINCT semester FROM dropdown WHERE AcYr = ?`;
+  db.query(query, [academicYear], (err, results) => {
+    if (err) {
+      console.error('Error fetching semesters:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    res.json(results);
+  });
+});
+
+app.get('/departments/:academicYear', (req, res) => {
+  console.log("department Got");
+  const academicYear = req.params.academicYear;
+  const query = "SELECT DISTINCT dep.`DepName` FROM dropdown d JOIN department dep ON d.`DeptID` = dep.`DepID` WHERE AcYr = ?";
+  db.query(query, [academicYear], (err, results) => {
+    if (err) {
+      console.error('Error fetching semesters:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    res.json(results);
+  });
+});
+
+
+
 
 // New semester course details
 let updated = "Hi";
@@ -180,6 +209,10 @@ app.get("/AdvApproved", (req, res) => {
     return res.status(200).json(result4);
   });
 });
+
+
+
+
 
 const multer = require("multer"); // For handling file uploads
 const XLSX = require("xlsx"); // For reading Excel files
