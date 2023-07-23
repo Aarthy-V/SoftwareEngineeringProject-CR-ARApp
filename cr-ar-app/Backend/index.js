@@ -32,12 +32,44 @@ app.get("/courseTable",(req, res)=>{
 
 app.get("/academicYear", (req, res) => {
   console.log("Academic Year Got");
-  let sql = "SELECT DISTINCT AcYr FROM student_university_details";
+  let sql = "SELECT DISTINCT AcYr FROM dropdown";
   db.query(sql, (err, results) => {
     if (err) return res.json(err);
     return res.json(results);
   });
 });
+
+app.get("/semesters/:academicYear", (req, res) => {
+  console.log("Semester Got");
+  const academicYear = req.params.academicYear;
+  //const encodedacademicYear = encodeURIComponent(academicYear);
+  //console.log(academicYear);
+  const query = `SELECT DISTINCT semester FROM dropdown WHERE AcYr = ?`;
+  db.query(query, [academicYear], (err, results) => {
+    if (err) {
+      console.error('Error fetching semesters:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    res.json(results);
+  });
+});
+
+app.get('/departments/:academicYear', (req, res) => {
+  console.log("department Got");
+  const academicYear = req.params.academicYear;
+  //const encodedacademicYear = encodeURIComponent(academicYear);
+  const query = "SELECT DISTINCT dep.`DepName` FROM dropdown d JOIN department dep ON d.`DeptID` = dep.`DepID` WHERE AcYr = ?";
+  db.query(query, [academicYear], (err, results) => {
+    if (err) {
+      console.error('Error fetching semesters:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    res.json(results);
+  });
+});
+
+
+
 
 // New semester course details
 let updated = "Hi";
@@ -217,6 +249,39 @@ app.get("/AdvApproved", (req, res) => {
   });
 });
 
+
+
+
+
+const multer = require("multer"); // For handling file uploads
+const XLSX = require("xlsx"); // For reading Excel files
+
+// Set up multer for file uploads
+const upload = multer({ dest: "upload/" });
+// API endpoint for file upload
+app.post("/api/upload", upload.single("excelFile"), (req, res) => {
+    // Check if a file was uploaded
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    // Read the uploaded file using XLSX library (install it using `npm install xlsx`)
+    const workbook = XLSX.readFile(req.file.path);
+    // Get the first sheet from the workbook
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    // Convert the sheet data into an array of objects
+    const data = XLSX.utils.sheet_to_json(worksheet);
+
+      const sql = "INSERT INTO student_sample (name, age) VALUES ?";
+      db.query(sql, [data.map(({ name, age }) => [name, age])], (err, result) => {
+        if (err) {
+          console.error("Error inserting data into the database:", err);
+          return res.status(500).json({ error: "Internal server error" });
+        }
+        console.log("Data inserted into the database:", result);
+        // Send a success response to the frontend
+        res.status(200).json({ message: "File uploaded and data inserted into the database" });
+      });
+    });
 
 
 
