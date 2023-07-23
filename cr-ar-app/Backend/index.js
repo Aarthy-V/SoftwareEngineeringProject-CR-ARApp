@@ -104,6 +104,7 @@ app.get("/CHupdated", (req, res) => {
 //student details 
 let updated3 = "";
 
+
 app.get("/student", (req, res) => {
   const sql = `
     SELECT sud.RegNo, sr.FullName
@@ -121,8 +122,36 @@ app.get("/student", (req, res) => {
     console.log("Data retrieved successfully");
     console.log("Result:", result3);
 
+
     // Send the result as a response to the client
     return res.status(200).json(result3);
+  });
+});
+
+//student details 
+let updated5 = "";
+
+
+app.get("/AdvName", (req, res) => {
+  const sql = `
+  SELECT sud.RegNo, ac.FullName
+  FROM student_university_details AS sud
+  JOIN academicstaff AS ac ON sud.AdvisorID = ac.StaffID
+  WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
+  `;
+
+  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result5) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Adv name retrieved successfully");
+    console.log("Result:", result5);
+
+
+    // Send the result as a response to the client
+    return res.status(200).json(result5);
   });
 });
 
@@ -154,20 +183,22 @@ app.get("/STcourse", (req, res) => {
   
 });
 
-//Adv approval
-
 let updated4 = "";
 
 app.get("/AdvApproved", (req, res) => {
+  // Fetching data from the coursereg table where RegNo and CourseCode match the values from previous queries
   const sql = `
-    SELECT  cr.AdvApproved
-    FROM student_university_details AS sud
-    JOIN student_registration AS sr ON sud.RegNo = sr.RegNo
-    LEFT JOIN coursereg AS cr ON sr.RegNo = cr.RegNo
-    WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
+    SELECT RegNo,CourseCode,AdvApproved
+    FROM coursereg
+    WHERE RegNo IN (SELECT sud.RegNo FROM student_university_details AS sud
+                    JOIN student_registration AS sr ON sud.RegNo = sr.RegNo
+                    WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?)
+      AND CourseCode IN (SELECT CourseCode FROM course_history WHERE AcYr = ? AND OfferedSem = ? )
   `;
 
-  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result4) => {
+  const params = [AcYr, OfferedSem, OfferedDeptID, AcYr, OfferedSem];
+
+  db.query(sql, params, (err, result4) => {
     if (err) {
       console.log("Error:", err);
       return res.status(500).json({ error: "Database error" });
@@ -176,10 +207,16 @@ app.get("/AdvApproved", (req, res) => {
     console.log("AdvApproved retrieved successfully");
     console.log("Result:", result4);
 
+    // Extracting the AdvApproved values from the result
+    const advApprovedValues = result4.map((item) => item.AdvApproved);
+
+    updated4=advApprovedValues;
+
     // Send the result as a response to the client
     return res.status(200).json(result4);
   });
 });
+
 
 
 
