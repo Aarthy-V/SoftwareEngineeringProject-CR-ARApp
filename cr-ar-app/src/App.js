@@ -21,6 +21,7 @@ import MHome from "./Components/MHome";
 import { useLocation } from "react-router-dom";
 import "./App.css";
 import StudentRegister from "./Components/StudentRegister";
+import ProfileView from "./Components/ProfileView";
 
 
 function App() {
@@ -43,9 +44,10 @@ function App() {
         <Route path="/advisors" element={<Advisor />}></Route>
         <Route path="/newsemester" element={<NewSemester />}></Route>
         <Route path="/studentRegister" element={<StudentRegister />}></Route>
+        <Route path="/viewProfile" element={<ProfileView />}></Route>
       </Routes>
-      {(!isHome && !isRegistration) && <SecondaryHome />}
-      
+      {!isHome && !isRegistration && <SecondaryHome />}
+      {/* <ProfileView/> */}
     </>
   );
 }

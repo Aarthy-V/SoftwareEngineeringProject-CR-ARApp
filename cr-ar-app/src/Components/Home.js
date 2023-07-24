@@ -8,6 +8,7 @@ import newstudentImage from "../Images/newstudent.jpg";
 import viewStudentImage from "../Images/viewStudent.jpg";
 import Student from "./Student";
 import DropDown from "./DropDown";
+import DropDown1 from "./DropDown1";
 import { Route, Routes, Link } from "react-router-dom";
 
 function Home() {
