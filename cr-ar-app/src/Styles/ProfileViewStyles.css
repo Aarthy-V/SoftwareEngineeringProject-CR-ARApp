@@ -163,20 +163,28 @@
 }
 
 .card-1 .content-1 .details-1 {
-    padding: 8px;
+    padding-top: 40px;
     text-align: center;
     width: 100%;
     transition: 0.5s;
-    transform: translateY(380px);
+    transform: translateY(294px);
 }
 
 .card-1:hover .content-1 .details-1 {
-    transform: translateY(0px);
+    transform: translateY(10px);
 }
 
 .card-1 .content-1 .course-wrapper {
     text-align: center;
     padding-top: 1.4em;
+}
+
+.card-1 .content-1 .details-1 .course-wrapper h2 {
+    font-size: 1.9em;
+    font-weight: 600;
+    color: #696969;
+    line-height: 1em;
+    white-space: nowrap;
 }
 
 .card-1 .content-1 h2 {
@@ -190,7 +198,7 @@
     text-align: left;
     padding-left: 1.5em;
     padding-top: 1.2em;
-    line-height: 3em;
+    line-height: 2.4em;
 }
 
 .card-1 .content-1 h4 {
@@ -203,7 +211,7 @@
     display: flex;
     flex-direction: column;
     padding: 0.7em;
-    line-height: 1.99em;
+    line-height: 1.7em;
     margin: 1em;
 }
 
@@ -213,7 +221,7 @@
     width: 90px;
     text-align: center;
     color: white;
-    margin-bottom: 1em;
+    margin-bottom: 0.67em;
 }
 
 .card-1 .content-1 .rectangle-322-red {
@@ -222,7 +230,7 @@
     width: 90px;
     text-align: center;
     color: white;
-    margin-bottom: 1em;
+    margin-bottom: 0.67em;
     white-space: nowrap;
 }
 
@@ -237,21 +245,60 @@
 .card-2 {
     position: relative;
     width: 400px;
-    height: 450px;
+    height: 190px;
     background: rgba(255, 255, 255, 0.849);
     border-radius: 20px;
     box-shadow: 0 35px 80px rgba(0, 0, 0, 0.10);
     margin: 10px;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
+}
+
+.card-2:hover {
+    height: 450px;
 }
 
 .card-2 .content-2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.card-2 .content-2 .details-2 {
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(282px);
+}
+
+.card-2:hover .content-2 .details-2 {
+    transform: translateY(5px);
 }
 
 .card-2 .content-2 .biodata-wrapper {
     text-align: center;
-    padding-top: 1.4em;
+    padding-top: 1em;
+}
+
+.card-2 .content-2 .biodata-wrapper h2 {
+    font-size: 1.8em;
+    color: #555;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-2 .content-2 .details-2 .data-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2em;
+    line-height: 1.7em;
+    margin: 1em;
+    text-align: center;
+    font-size: 1.1em;
 }

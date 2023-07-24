@@ -17,6 +17,7 @@ app.get("/courses",(req, res) => {
     return res.json(results);
   });
 });
+
 // course history
 app.get("/courseTable",(req, res)=>{
   console.log("course table view");
@@ -32,7 +33,7 @@ app.get("/courseTable",(req, res)=>{
 
 app.get("/academicYear", (req, res) => {
   console.log("Academic Year Got");
-  let sql = "SELECT DISTINCT AcYr FROM dropdown";
+  let sql = "SELECT DISTINCT AcYr FROM student_university_details";
   db.query(sql, (err, results) => {
     if (err) return res.json(err);
     return res.json(results);
