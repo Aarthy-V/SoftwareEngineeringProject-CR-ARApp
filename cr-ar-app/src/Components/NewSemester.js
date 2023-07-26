@@ -1,13 +1,11 @@
 import "../Styles/NewSemesterStyles.css";
 import SearchBar from "./SearchBar";
 import NewStudentButton from "./NewStudentButton";
-import DropDownYear from "./DropDownYear";
 import React, { useState, useEffect } from "react";
 import "../Styles/main.css";
 import "../Styles/HomeStyles.css";
 
-import DropDownDepartment from "./DropDownDepartment";
-import DropDownSemester from "./DropDownSemester";
+import DropDownNewSemester from "./DropDownNewSemester";
 import Table from "./Table";
 import MainHead from "./MainHead";
 import Modal from "./Modal";
@@ -15,6 +13,7 @@ import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
 import { DatePicker, Space } from "antd";
 import axios from "axios";
+import { da } from "date-fns/locale";
 
 function NewSemester() {
   // State variables to store the dropdown values in NewSemester
@@ -65,27 +64,15 @@ function NewSemester() {
     setData([...data, newRow]);
   };
 
-  const openSemester = () => {
-    console.log("Selected Year:", year);
-    console.log("Selected Semester:", semester);
-    console.log("Selected Department:", department);
-
-    console.log("Semester Start Date:", startSem);
-    console.log("Semester End Date:", endSem);
-    console.log("Registration Start Date:", startReg);
-    console.log("Registration End Date:", endReg);
-
-
-    
-  };
+  
 
   const { RangePicker } = DatePicker;
 
 
-  const [startSem, setStartSemi] = useState([]);
-  const [endSem, setEndSemi] = useState([]);
-  const [startReg, setStartReg] = useState([]);
-  const [endReg, setEndReg] = useState([]);
+  const [startSem, setStartSemi] = useState("");
+  const [endSem, setEndSemi] = useState("");
+  const [startReg, setStartReg] = useState("");
+  const [endReg, setEndReg] = useState("");
 
   const onChangeReg = (date, dateString) => {
     setStartReg(dateString[0]);
@@ -97,6 +84,35 @@ function NewSemester() {
     setStartSemi(dateString[0]);
     setEndSemi(dateString[1]);
     console.log(dateString);
+  };
+
+  const openSemester = () => {
+    console.log("Selected Year:", year);
+    console.log("Selected Semester:", semester);
+    console.log("Selected Department:", department);
+
+    console.log("Semester Start Date:", startSem);
+    console.log("Semester End Date:", endSem);
+    console.log("Registration Start Date:", startReg);
+    console.log("Registration End Date:", endReg);
+
+    axios
+      .post("http://localhost:3300/insertNewSemester", {
+        AcYr: year.value,
+        OfferedSem: semester.value,
+        OfferedDeptID: department.value,
+        startSem: startSem,
+        endSem: endSem,
+        startReg: startReg,
+        endReg: endReg,
+        data: data,
+      })
+      .then((response) => {
+        console.log("Successful pass", response);
+      })
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+      });
   };
 
   return (
@@ -185,7 +201,7 @@ function NewSemester() {
       <div className="buttonWrapper1">
         <div className="hn22">
           <div className="h-nn">
-            <DropDown
+            <DropDownNewSemester
               year={year}
               semester={semester}
               department={department}

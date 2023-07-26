@@ -422,6 +422,58 @@ app.get("/addCourseForm/:courseCode", (req, res) => {
 });
 
 
+// Insert New Semester to Course History Table
+
+app.post("/insertNewSemester", (req, res) => {
+  const AcYr = req.body.AcYr;
+  const OfferedSem = req.body.OfferedSem;
+  const OfferedDeptID = req.body.OfferedDeptID;
+  const startSem = req.body.startSem;
+  const endSem = req.body.endSem;
+  const startReg = req.body.startReg;
+  const endReg = req.body.endReg;
+  const data = req.body.data;
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return res
+      .status(400)
+      .json({ error: "Invalid data format or empty data array" });
+  }
+
+  const values = data.map((row) => [
+    row.CourseCode,
+    row.CourseName,
+    row.Credit,
+    row["Core/Technical"],
+    row.CoordinatorID,
+    row.Prerequiste,
+    OfferedSem,
+    OfferedDeptID,
+    AcYr,
+    startReg,
+    endReg,
+    startSem,
+    endSem,
+    0, // Set 'Open/Close' value to 0 (assuming it's a numeric field)
+  ]);
+
+  const sql = "INSERT INTO course (CourseCode, CourseName, Credit, \`Core/Technical\`, CoordinatorID, PreRequesite, OfferedSem, OfferedDeptID, AcYr, RegOpenDate, RegCloseDate, SemStartDate, SemEndDate, \`Open/Close\`) VALUES ?";
+
+  db.query(sql, [values], (err, result) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Courses table updated successfully");
+    console.log("Result:", result);
+
+    // Send the result as a response to the client
+    return res.status(200).json(result);
+  });
+});
+
+
 
 
 
