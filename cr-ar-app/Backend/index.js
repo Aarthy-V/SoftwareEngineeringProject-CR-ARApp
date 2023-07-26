@@ -142,7 +142,7 @@ app.get("/student", (req, res) => {
   const sql = `
     SELECT sud.RegNo, sr.FullName
     FROM student_university_details AS sud
-    JOIN student_registration AS sr ON sud.RegNo = sr.RegNo
+    JOIN student_registration AS sr ON sud.RegNo = sr.RegNo 
     WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
   `;
 
@@ -161,13 +161,41 @@ app.get("/student", (req, res) => {
   });
 });
 
+
+//advisor details
+
+
+app.get("/advisor", (req, res) => {
+  const sql = `
+  SELECT sud.RegNo, sr.FullName,ac.StaffName
+  FROM student_university_details AS sud
+  JOIN student_registration AS sr 
+  JOIN academicstaff as ac ON sud.RegNo = sr.RegNo AND ac.StaffID=sud.AdvisorID
+  WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
+  `;
+
+  db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result7) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Advisor Data retrieved successfully");
+    console.log("Result:", result7);
+
+
+    // Send the result as a response to the client
+    return res.status(200).json(result7);
+  });
+});
+
 //student details 
 let updated5 = "";
 
 
 app.get("/AdvName", (req, res) => {
   const sql = `
-  SELECT sud.RegNo, ac.FullName
+  SELECT sud.RegNo, ac.StaffName
   FROM student_university_details AS sud
   JOIN academicstaff AS ac ON sud.AdvisorID = ac.StaffID
   WHERE sud.AcYr = ? AND sud.Semester = ? AND sud.DepID = ?
