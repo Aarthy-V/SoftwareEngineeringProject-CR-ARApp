@@ -7,6 +7,7 @@ function SearchBar({ onSearch,name }) {
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
+    console.log("Main search Term",searchTerm);
   };
 
   const handleSubmit = (event) => {

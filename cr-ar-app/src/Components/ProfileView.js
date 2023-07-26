@@ -46,8 +46,26 @@ const ProfileView = () => {
     });
   };
 
+  useEffect(() => {
+    if (RegNo) {
+      submitRegNum3();
+    }
+  }, [RegNo]);
+
+  const submitRegNum3 = () => {
+    axios.post("http://localhost:3300/studentBioView", {
+      RegNum3: RegNo,
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+      console.error("Error submitting :", error);
+    });
+  };
+
   const [studentData, setViewData] = useState([]);
   const [courseData, setCourseData] = useState([]);
+  const [BioData, setBioData] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3300/view")
       .then((res) => res.json())
@@ -63,6 +81,13 @@ const ProfileView = () => {
       })
       .catch((err) => console.log(err));
 
+      fetch("http://localhost:3300/viewBio")
+      .then((res) => res.json())
+      .then((data) => {
+        setBioData(data[0]);
+      })
+      .catch((err) => console.log(err));
+
 
     }, []);
 
@@ -75,6 +100,12 @@ const ProfileView = () => {
       D004: "Mech",
       D005: "IDS",
     };
+
+    function formatDate(dateString) {
+      if (!dateString) return ""; // Handle the case where dateString is empty or not available
+      const dateObject = new Date(dateString);
+      return dateObject.toLocaleDateString("en-GB"); // Adjust the locale as per your desired date format
+    }
 
   // Now you have the RegNo parameter and can use it in your component logic
   return (
@@ -157,16 +188,20 @@ const ProfileView = () => {
                 <label>Male</label>
               </div>
               <div className="label-wrapper">
-                <label>Age : </label>
-                <label>24</label>
+              <label>Age : {BioData.age} </label>
+               
               </div>
-              <label>Date of Birth : </label>
-              <label>Telephone : </label>
-              <label>Place of Birth : </label>
-              <label>District : </label>
-              <label>Civil Status : </label>
-              <label>Blood Type : </label>
+              <label>Date of Birth : {formatDate(BioData.DOB)} </label>
+            
+              <label>Telephone : {BioData.PhNo} </label>
+              
+              <label>Race : {BioData.Race}</label>
+              <label>Religion : {BioData.Religion}</label>
+             
+              <label>NIC : {BioData.NIC} </label>
+             
               <label>Address : </label>
+              <label>{BioData.PermenantAddr}</label>
             </div>
           </div>
         </div>

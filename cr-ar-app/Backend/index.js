@@ -151,6 +151,30 @@ app.get("/viewCourse", (req, res) => {
     return res.json(updated10);
 });
 
+let RegNum3="";
+let updated11="";
+app.post("/studentBioView", (req, res) => {
+  RegNum3=req.body.RegNum3;
+  const sql = "SELECT Gender,age,DOB,PhNo,PermenantAddr,Race,NIC,Religion FROM student_registration WHERE RegNo = ?;";  
+  db.query(sql, [RegNum3], (err, result11) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student Bio take successfully");
+    console.log("Result:", result11);
+
+    // Send the result as a response to the client
+    updated11 = result11;
+    return res.status(200).json(updated11);
+  });
+});
+
+app.get("/viewBio", (req, res) => {
+    return res.json(updated11);
+});
+
 
 app.listen(3300, function () {
   console.log("App Listening on port 3300");
@@ -166,7 +190,7 @@ let updated1 = "";
 app.get("/CHupdated", (req, res) => {
   const sql =
   //"SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
-  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`, ch.`SemStartDate`,ch.`SemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
+  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`,DATE_FORMAT(ch.`SemStartDate`, '%Y-%m-%d') AS `FormattedSemStartDate`,DATE_FORMAT(ch.`SemEndDate`, '%Y-%m-%d') AS `FormattedSemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
