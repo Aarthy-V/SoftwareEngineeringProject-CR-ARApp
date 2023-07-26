@@ -6,6 +6,7 @@ import html2pdf from 'html2pdf.js';
 import { useReactToPrint } from 'react-to-print';
 
 
+
 import DropDownYear from "./DropDownYear";
 
 import "../Styles/main.css"
@@ -50,18 +51,78 @@ import jsPDF from 'jspdf';
 
     // Function to handle the printing functionality
     const handlePrint = () => {
-    const tableElement = pdfRef.current.querySelector('.table'); // Assuming the table has the 'table' class
-    if (tableElement) {
-      const content = tableElement.outerHTML;
-      const printWindow = window.open('', '', 'height=500,width=800');
-      printWindow.document.write('<html><head><title>Print</title></head><body>');
-      printWindow.document.write(content);
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
-    }
-  };
+      const tableElement = pdfRef.current.querySelector('.table'); // Assuming the table has the 'table' class
+      if (tableElement) {
+        // Add CSS to style the table with borders
+        const tableStyle = `
+          <style>
+          @media print {
+            @page {
+              size: 1920px 1080px; 
+              margin: 20mm 10mm; /* Set the margins (top, right, bottom, left) for the print paper */
+            }
+          .table{
+            display: block;
+            border-collapse: collapse;
+            overflow: hidden;
+            table-layout: fixed;
+            border-radius: 10px;
+            white-space: nowrap;
+            max-height: 710px;
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+            overflow-y: scroll;
+            overflow-x: auto;
+            filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.2));
+            position: fixed;
+            top: 40px;
+        }
+        .table thead{
+          background-color: var(--white, #FFF);
+          color: var(--gray, #69686A);
+          position: sticky; /* Keep the header fixed */
+          top: 0px; /* Position it at the top of the wrapper */
+          z-index: 1;
+        }
 
+        .table tbody{
+          background-color: var(--white, #FFF);
+          color: var(--gray, #69686A);
+        }
+
+        .table th, 
+        .table td{
+          padding: 0.8rem;
+        } 
+
+        .table td{
+          border-top: 0.5px solid #ddd;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .table tbody tr:hover{
+          background-color: #F2F8FF;
+          filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .expand{
+          width: 16%;
+        }
+          </style>
+        `;
+    
+        const content = tableStyle + tableElement.outerHTML;
+        const printWindow = window.open('', '', 'height=500,width=800');
+        printWindow.document.write('<html><head><title>Print</title></head><body>');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+      }
+    };
+    
   const handlePrint1 = () => {
     const tableElement = pdfRef.current.querySelector('.table');
     const content = tableElement.outerHTML;
@@ -132,7 +193,7 @@ import jsPDF from 'jspdf';
         </div>
        
         <div>
-          <DownloadButton onClick={generatePDF} />
+          <DownloadButton onClick={handlePrint} />
         </div>
         Course details
         
