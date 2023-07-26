@@ -12,6 +12,7 @@ import Table from "./Table";
 import MainHead from "./MainHead";
 import Modal from "./Modal";
 import DropDown from "./DropDown";
+import { Link } from "react-router-dom";
 
 function NewSemester() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,8 +26,6 @@ function NewSemester() {
     "Prerequiste",
     "Status",
   ];
-
-  
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -55,11 +54,14 @@ function NewSemester() {
     setData((prevData) => prevData.filter((_, idx) => idx !== targetIndex));
   };
 
+  const handleSubmit = (newRow) => {
+    setData([...data, newRow]);
+  };
 
   return (
     <>
       <div className="title-wrapper">
-          <p className="title-wrapper-2">New Semester</p>
+        <p className="title-wrapper-2">New Semester</p>
       </div>
       <div className="table-wrapper">
         {data.length > 0 && (
@@ -83,7 +85,12 @@ function NewSemester() {
                       ) : index2 === 3 && value === "Technical" ? (
                         <button className="label-technical">{value}</button>
                       ) : index2 === 6 ? (
-                        <button className="label-remove" onClick={() => handleRemove(index)}>Remove</button>
+                        <button
+                          className="label-remove"
+                          onClick={() => handleRemove(index)}
+                        >
+                          Remove
+                        </button>
                       ) : (
                         <span>{value}</span>
                       )}
@@ -111,7 +118,14 @@ function NewSemester() {
             >
               Add New Course
             </button>
-            {modalOpen && <Modal />}
+            {modalOpen && (
+              <Modal
+                closeModal={() => {
+                  setModalOpen(false);
+                }}
+                onSubmit={handleSubmit}
+              />
+            )}
           </div>
         </div>
       </div>
