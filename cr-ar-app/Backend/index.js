@@ -313,6 +313,32 @@ app.post("/api/upload", upload.single("excelFile"), (req, res) => {
     });
 
 
+    // student register
+
+  let updatedS = "";
+
+  app.post("http://localhost:3300/studentBio", (req, res) => {
+  const formData = req.body;
+  //const {email,indexNo,nic,fname,lname,mathematics,physics,chemistry,english,phno,dob,zscore,rank,address,medium} = formData;
+  const sql =
+  "INSERT INTO student_registration_sample (`Email`, `IndexNo`, `NIC`, `FName`, `LName`, `Mathematics`, `Physics`, `Chemistry`, `English`, `PhoneNum`, `BOB`, `Z-Score`, `Rank`, `Address`, `Medium`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(sql, [formData], (err, resultS) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+    console.log("Student registration table updated successfully");
+    console.log("Result:", resultS);
+
+    // Send the result as a response to the client
+    updatedS = resultS;
+    return res.status(200).json(resultS);
+    });
+  });
+  app.get("/bio",(req,res)=>{
+    return res.json(updatedS);
+  })
+
 
 
 
