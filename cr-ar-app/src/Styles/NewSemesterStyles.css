@@ -141,12 +141,11 @@
 }
 
 .label-remove {
-  background-color: rgba(
-    5,
-    205,
-    153,
-    0.3
-  ); /* Adjust the alpha value (0.5) for desired transparency */
+  background-color: rgba(5,
+      205,
+      153,
+      0.3);
+  /* Adjust the alpha value (0.5) for desired transparency */
   border-radius: 4px;
   width: 60px;
   height: 30px;
@@ -156,11 +155,9 @@
 }
 
 .label-remove:hover {
-  background: linear-gradient(
-    360deg,
-    rgb(0, 150, 135) 0%,
-    rgb(8.37, 200.81, 181.57) 100%
-  );
+  background: linear-gradient(360deg,
+      rgb(0, 150, 135) 0%,
+      rgb(8.37, 200.81, 181.57) 100%);
   cursor: pointer;
 }
 
@@ -210,10 +207,8 @@
 }
 
 .button-open-semester:hover {
-  background: var(
-    --new-green,
-    linear-gradient(135deg, #009687 50%, #08c9b6 100%)
-  );
+  background: var(--new-green,
+      linear-gradient(135deg, #009687 50%, #08c9b6 100%));
   cursor: pointer;
 }
 
@@ -253,17 +248,19 @@
   width: 180px;
   height: 39px;
   border: none;
-  font-weight: 400;
   color: #ffffff;
   font-size: medium;
   box-shadow: 0px 2px 2px #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  text-decoration: none;
 }
 
 .button-new-course:hover {
-  background: var(
-    --new-green,
-    linear-gradient(135deg, #009687 0%, #08c9b6 100%)
-  );
+  background: var(--new-green,
+      linear-gradient(135deg, #009687 0%, #08c9b6 100%));
   cursor: pointer;
 }
 
@@ -277,8 +274,9 @@
   left: 46%;
 }
 
-.title-wrapper-2{
-  font-size: 30px; /* Adjust the font size as needed */
+.title-wrapper-2 {
+  font-size: 30px;
+  /* Adjust the font size as needed */
   font-weight: semi-bold;
   color: #009687;
 }
