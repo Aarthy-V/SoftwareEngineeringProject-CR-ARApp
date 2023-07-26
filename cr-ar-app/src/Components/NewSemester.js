@@ -14,6 +14,7 @@ import Modal from "./Modal";
 import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
 import { DatePicker, Space } from "antd";
+import axios from "axios";
 
 function NewSemester() {
   // State variables to store the dropdown values in NewSemester
@@ -74,7 +75,7 @@ function NewSemester() {
     console.log("Registration Start Date:", startReg);
     console.log("Registration End Date:", endReg);
 
-    
+
     
   };
 
