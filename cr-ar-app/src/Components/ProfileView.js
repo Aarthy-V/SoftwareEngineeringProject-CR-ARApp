@@ -1,9 +1,82 @@
+// ViewProfile.js
 import "../Styles/ProfileViewStyles.css";
 import PersonImage from "../Images/man.png";
 import CoursesImage from "../Images/online-learning.png";
 import BioImage from "../Images/bio.png";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function ProfileView() {
+
+// import React from 'react';
+import { useParams } from 'react-router-dom';
+const ProfileView = () => {
+  const { RegNo } = useParams();
+
+  useEffect(() => {
+    if (RegNo) {
+      submitRegNum();
+    }
+  }, [RegNo]);
+
+  const submitRegNum = () => {
+    axios.post("http://localhost:3300/studentProfileView", {
+      RegNum: RegNo,
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+      console.error("Error submitting :", error);
+    });
+  };
+
+  useEffect(() => {
+    if (RegNo) {
+      submitRegNum2();
+    }
+  }, [RegNo]);
+
+  const submitRegNum2 = () => {
+    axios.post("http://localhost:3300/studentCourseView", {
+      RegNum2: RegNo,
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+      console.error("Error submitting :", error);
+    });
+  };
+
+  const [studentData, setViewData] = useState([]);
+  const [courseData, setCourseData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3300/view")
+      .then((res) => res.json())
+      .then((data) => {
+        setViewData(data);
+      })
+      .catch((err) => console.log(err));
+
+    fetch("http://localhost:3300/viewCourse")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourseData(data);
+      })
+      .catch((err) => console.log(err));
+
+
+    }, []);
+
+    
+
+    const departmentMapping = {
+      D001: "Com",
+      D002: "Civil",
+      D003: "EEE",
+      D004: "Mech",
+      D005: "IDS",
+    };
+
+  // Now you have the RegNo parameter and can use it in your component logic
   return (
     <div className="body-wrapper">
       <div className="card">
@@ -13,29 +86,29 @@ function ProfileView() {
         <div className="content">
           <div className="details">
             <h2>
-              Gowsikan Nakuleswaran
+            {studentData.length > 0 && studentData[0].FullName}
               <br />
-              <span>2019/E/039</span>
-            </h2>
+              <span>{RegNo}</span>
+              </h2>
             <div className="data">
               <h5>
-                342
+              {studentData[0]?.AcYr}
                 <br />
-                <span>Posts</span>
+                <span>AcYr</span>
               </h5>
               <h5>
-                120k
+              {studentData[0]?.Semester}
                 <br />
-                <span>Followers</span>
+                <span>Semester</span>
               </h5>
               <h5>
-                285
+              {departmentMapping[studentData[0]?.DepID]}
                 <br />
-                <span>Following</span>
+                <span>Department</span>
               </h5>
             </div>
             <div className="actionBtn">
-              <button>Follow</button>
+              <button>Edit</button>
               <button>Message</button>
             </div>
           </div>
@@ -52,22 +125,18 @@ function ProfileView() {
             </div>
             <div className="wrapper-3">
               <div className="course-wrapper-2">
-                <h4>Software Construction</h4>
-                <h4>Operating System</h4>
-                <h4>Machine Learning</h4>
-                <h4>Embedded System</h4>
-                <h4>Robotics and Automation</h4>
-                <h4>Software Construction</h4>
-                <h4>Signals and Systems</h4>
+                 {/* Iterate over the courseData and create dynamic course elements */}
+                 {courseData.map((course, index) => (
+                  <h4 key={index}>{course.CourseName}</h4>
+                ))}
               </div>
               <div className="approved">
-                <label className="rectangle-322">Approved</label>
-                <label className="rectangle-322">Approved</label>
-                <label className="rectangle-322-red">Pending</label>
-                <label className="rectangle-322">Approved</label>
-                <label className="rectangle-322">Approved</label>
-                <label className="rectangle-322-red">Pending</label>
-                <label className="rectangle-322">Approved</label>
+                {/* Iterate over the courseData and create dynamic approval status elements */}
+                {courseData.map((course, index) => (
+                  <label key={index} className={`rectangle-322 ${course.AdvApproved === 1 ? "approved" : "rectangle-322-red"}`}>
+                    {course.AdvApproved === 1 ? "Approved" : "Pending"}
+                  </label>
+                ))}
               </div>
             </div>
           </div>
@@ -105,5 +174,6 @@ function ProfileView() {
     </div>
   );
 }
+ 
 
 export default ProfileView;

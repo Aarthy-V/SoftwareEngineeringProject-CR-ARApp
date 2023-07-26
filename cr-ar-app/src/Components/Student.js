@@ -7,6 +7,7 @@ import "../Styles/main.css";
 import "../Styles/HomeStyles.css";
 import "../Styles/NewSemesterStyles.css";
 import "../Styles/ExtraFeatureButton.css";
+import { Link, Route, Routes } from "react-router-dom";
 
 import DropDownDepartment from "./DropDownDepartment";
 import DropDownSemester from "./DropDownSemester";
@@ -102,7 +103,13 @@ function Student() {
           rowData['Advisor'] = adv.FullName;
         }
       })
-      rowData['View']= <Icon3/>;
+
+
+     rowData['View'] = (
+      <Link className="text-wrapper-3" to={`/viewProfile/${student.RegNo}`}>
+      <Icon3 />
+    </Link>
+  );
 
 
       console.log('row data',rowData);
