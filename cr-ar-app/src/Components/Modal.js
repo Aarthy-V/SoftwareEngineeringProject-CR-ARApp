@@ -1,8 +1,8 @@
 import "../Styles/ModalStyles.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Modal({closeModal,onSubmit}) {
+function Modal({ closeModal, onSubmit }) {
   const [showModal, setShowModal] = useState(true);
 
   const handleCloseModal = () => {
@@ -60,7 +60,7 @@ function Modal({closeModal,onSubmit}) {
       console.log(formState);
       closeModal();
     }
-  }
+  };
 
   const [formState, setFormState] = useState({
     courseCode: "",
@@ -69,7 +69,7 @@ function Modal({closeModal,onSubmit}) {
     core: "Core",
     coordinator: "",
     prequiste: "",
-    status: "0"
+    status: "0",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -91,12 +91,6 @@ function Modal({closeModal,onSubmit}) {
       isValid = false;
     }
 
-    // Validate courseName
-    if (!formState.courseName.trim()) {
-      errors.courseName = "Course Name is required";
-      isValid = false;
-    }
-
     // Validate credit
     if (!formState.credit.trim()) {
       errors.credit = "Credit is required";
@@ -113,6 +107,54 @@ function Modal({closeModal,onSubmit}) {
     return isValid;
   };
 
+  const [coursesCodes, setCourseCodes] = useState([]);
+  const [courseName, setCourseNames] = useState([]);
+  const [coordinator, setCoordinator] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3300/availableCourseDetails")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourseCodes(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const values = coursesCodes.map((opts, i) => ({
+    value: opts.CourseCode,
+  }));
+
+  useEffect(() => {
+    fetch("http://localhost:3300/availableCoordinators")
+      .then((res) => res.json())
+      .then((data) => {
+        setCoordinator(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const values3 = coordinator.map((opts, i) => ({
+    value: opts.FullName,
+  }));
+
+  useEffect(() => {
+    if (formState.courseCode) {
+      fetch(
+        `http://localhost:3300/addCourseForm/${encodeURIComponent(
+          formState.courseCode
+        )}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setCourseNames(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [formState.courseCode]);
+
+  const values2 = courseName.map((opts, i) => ({
+    value: opts.CourseName,
+  }));
 
   return (
     <>
@@ -122,33 +164,55 @@ function Modal({closeModal,onSubmit}) {
             <div className="grid1">
               <div className="form-group">
                 <label htmlFor="Code">Course Code</label>
-                <input
+                <select
                   name="Code"
                   value={formState.courseCode}
                   onChange={handleCodeChange}
-                />
+                >
+                  <option value="" disabled>
+                    Select Course Code
+                  </option>
+                  {values.map((value, index) => (
+                    <option key={index} value={value.value}>
+                      {value.value}
+                    </option>
+                  ))}
+                </select>
                 {formErrors.courseCode && (
                   <p className="error">{formErrors.courseCode}</p>
                 )}
               </div>
               <div className="form-group">
                 <label htmlFor="Course">Course Name</label>
-                <input
+                <select
                   name="Course"
                   value={formState.courseName}
                   onChange={handleNameChange}
-                />
+                >
+                  {values2.map((value, index) => (
+                    <option key={index} value={value.value}>
+                      {value.value}
+                    </option>
+                  ))}
+                </select>
                 {formErrors.courseName && (
                   <p className="error">{formErrors.courseName}</p>
                 )}
               </div>
               <div className="form-group">
                 <label htmlFor="Credit">Credit</label>
-                <input
+                <select
                   name="Credit"
                   value={formState.credit}
                   onChange={handleCreditChange}
-                />
+                >
+                  <option value="" disabled>
+                    Select Credit
+                  </option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
                 {formErrors.credit && (
                   <p className="error">{formErrors.credit}</p>
                 )}
@@ -163,17 +227,24 @@ function Modal({closeModal,onSubmit}) {
                   <option value="Core">Core</option>
                   <option value="Technical">Technical</option>
                 </select>
-                {formErrors.core && (
-                  <p className="error">{formErrors.core}</p>
-                )}
+                {formErrors.core && <p className="error">{formErrors.core}</p>}
               </div>
               <div className="form-group">
                 <label htmlFor="Coordinator">Coordinator</label>
-                <input
+                <select
                   name="Coordinator"
                   value={formState.coordinator}
                   onChange={handleCoordinatorChange}
-                />
+                >
+                  <option value="" disabled>
+                    Select Coordinator
+                  </option>
+                  {values3.map((value, index) => (
+                    <option key={index} value={value.value}>
+                      {value.value}
+                    </option>
+                  ))}
+                </select>
                 {formErrors.coordinator && (
                   <p className="error">{formErrors.coordinator}</p>
                 )}
@@ -184,12 +255,15 @@ function Modal({closeModal,onSubmit}) {
                   name="Prequiste"
                   value={formState.prequiste}
                   onChange={handlePrequisteChange}
-                  placeholder="Select Prequiste"
                 >
-                  <option value="OperatingSystem">Operating System</option>
-                  <option value="SoftwareEngineering">
-                    Software Engineering
+                  <option value="" disabled>
+                    Select Prequiste
                   </option>
+                  {values.map((value, index) => (
+                    <option key={index} value={value.value}>
+                      {value.value}
+                    </option>
+                  ))}
                 </select>
                 {formErrors.prequiste && (
                   <p className="error">{formErrors.prequiste}</p>

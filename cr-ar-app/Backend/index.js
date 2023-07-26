@@ -70,8 +70,6 @@ app.get('/departments/:academicYear', (req, res) => {
 });
 
 
-
-
 // New semester course details
 let updated = "Hi";
 let AcYr = "";
@@ -384,7 +382,44 @@ app.post("/api/upload", upload.single("excelFile"), (req, res) => {
         // Send a success response to the frontend
         res.status(200).json({ message: "File uploaded and data inserted into the database" });
       });
-    });
+});
+    
+
+
+// New Semester add new Course
+app.get("/availableCourseDetails", (req, res) => {
+  console.log("Available Course Codes");
+  let sql = "SELECT * FROM ar_app.curriculum;";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+    return res.json(results);
+  });
+});
+
+app.get("/availableCoordinators", (req, res) => {
+  console.log("Available Course Codes");
+  let sql = "SELECT * FROM ar_app.academicstaff;";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+    return res.json(results);
+  });
+});
+
+
+app.get("/addCourseForm/:courseCode", (req, res) => {
+  console.log("Course Code Got from New Semester Page");
+  const courseCode = req.params.courseCode;
+  
+  const query =
+    "SELECT * FROM ar_app.curriculum WHERE CourseCode = ? ";
+  db.query(query, [courseCode], (err, results) => {
+    if (err) {
+      console.error("Error fetching course name:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    res.json(results);
+  });
+});
 
 
 
