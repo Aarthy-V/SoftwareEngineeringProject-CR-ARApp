@@ -153,6 +153,30 @@ app.get("/viewCourse", (req, res) => {
     return res.json(updated10);
 });
 
+let RegNum3="";
+let updated11="";
+app.post("/studentBioView", (req, res) => {
+  RegNum3=req.body.RegNum3;
+  const sql = "SELECT Gender,age,DOB,PhNo,PermenantAddr,Race,NIC,Religion FROM student_registration WHERE RegNo = ?;";  
+  db.query(sql, [RegNum3], (err, result11) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student Bio take successfully");
+    console.log("Result:", result11);
+
+    // Send the result as a response to the client
+    updated11 = result11;
+    return res.status(200).json(updated11);
+  });
+});
+
+app.get("/viewBio", (req, res) => {
+    return res.json(updated11);
+});
+
 
 app.listen(3300, function () {
   console.log("App Listening on port 3300");

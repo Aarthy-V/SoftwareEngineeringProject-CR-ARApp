@@ -9,7 +9,7 @@ import DropDown from "./DropDown";
 import { Link, Route, Routes } from "react-router-dom";
 import StudentRegister from "./StudentRegister";
 
-function MainHead({title,searchTitle,isBtn}) {
+function MainHead({title,searchTitle,isBtn,onSearch}) {
     const handleSearch = (searchTerm) => {
         // Perform search logic here using the searchTerm
         console.log('Search term:', searchTerm);
@@ -27,7 +27,7 @@ function MainHead({title,searchTitle,isBtn}) {
           <p className="search-bar-students">{title}</p>
         </div>
         <div className="search-bar-search-search_box">
-          <SearchBar onSearch={handleSearch} name={searchTitle} />
+          <SearchBar onSearch={onSearch} name={searchTitle} />
         </div>
 
         <div className="search-bar-button">
@@ -35,7 +35,7 @@ function MainHead({title,searchTitle,isBtn}) {
             <div className="search-bar-frame">
               <div className="box">
                 <div className="rectangle-wrapper">
-                  <button className="rectangle" onClick={handleNewStudent}>
+                  <button className="rectangle" onSearch={handleNewStudent}>
                     <FiPlus className="plus-icon" />
                     <Link className="text-wrapper-3" to="/studentRegister">
                       New Student

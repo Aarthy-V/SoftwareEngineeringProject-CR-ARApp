@@ -22,14 +22,11 @@ function Student() {
     console.log("New Student button clicked");
   };
   
-  const handleSearch = (searchTerm) => {
-    // Perform search logic here using the searchTerm
-    console.log("Search term:", searchTerm);
-  };
-
+  
   const handleExtra = (viewing) => {
     console.log('view:', viewing);
   }
+  
 
   const [studentData, setStudentData] = useState([]);
   const [courseData, setCourseData] = useState([]);
@@ -137,11 +134,44 @@ const getTableColumns = () => {
   console.log('count');
 
 
+  const [searchTerm,setSearchTerm]=useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    filterData(searchTerm);
+  }, [searchTerm]);
+
+
+
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    console.log("Search Term",searchTerm);
+    filterData(searchTerm);
+  };
+  const filterData = (searchTerm) => {
+    if (searchTerm.trim() === "") {
+      // Reset filtered data if the search term is empty
+      setFilteredData([]);
+      return;
+    }
+  
+    const filteredResults = table_data.filter((item) => {
+      return (
+        item.Name &&
+        typeof item.Name === "string" &&
+        item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+
+    setFilteredData(filteredResults);
+  }
+  
   return (
     <div>
       <div className="table-wrapper">
-        <Table list={table_data} colNames={colNames} />
-        <MainHead title="Students" searchTitle="Search Students..." isBtn="1" />
+       
+      <MainHead title="Students" searchTitle="Search Students..." isBtn="1" onSearch={handleSearch} />
+      <Table list={filteredData.length > 0 ? filteredData : table_data} colNames={colNames} />
       </div>
     </div>
   );
