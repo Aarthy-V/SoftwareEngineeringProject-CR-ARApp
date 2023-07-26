@@ -102,6 +102,56 @@ app.get("/updated", (req, res) => {
     return res.json(updated);
 });
 
+let updated9 = "Hi";
+let RegNum="";
+
+app.post("/studentProfileView", (req, res) => {
+  RegNum=req.body.RegNum;
+  const sql ="SELECT sud.AcYr,sud.Semester,sud.DepID,sr.FullName FROM student_university_details AS sud JOIN student_registration AS sr  WHERE sud.RegNo = ? AND sr.RegNo=? ";
+  db.query(sql, [RegNum,RegNum], (err, result9) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student view take successfully");
+    console.log("Result:", result9);
+
+    // Send the result as a response to the client
+    updated9 = result9;
+    return res.status(200).json(result9);
+  });
+});
+
+app.get("/view", (req, res) => {
+  return res.json(updated9);
+});
+
+let RegNum2="";
+let updated10 = "";
+app.post("/studentCourseView", (req, res) => {
+  RegNum2=req.body.RegNum2;
+  const sql = "SELECT cu.CourseName,cr.AdvApproved FROM coursereg AS cr JOIN curriculum AS cu ON cu.CourseCode = cr.CourseCode  WHERE cr.RegNo = ? ";  
+  db.query(sql, [RegNum2], (err, result10) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student course take successfully");
+    console.log("Result:", result10);
+
+    // Send the result as a response to the client
+    updated10 = result10;
+    return res.status(200).json(result10);
+  });
+});
+
+app.get("/viewCourse", (req, res) => {
+    return res.json(updated10);
+});
+
+
 app.listen(3300, function () {
   console.log("App Listening on port 3300");
   db.connect(function (err) {

@@ -167,11 +167,11 @@
     text-align: center;
     width: 100%;
     transition: 0.5s;
-    transform: translateY(294px);
+    transform: translateY(170px);
 }
 
 .card-1:hover .content-1 .details-1 {
-    transform: translateY(10px);
+    transform: translateY(-100px);
 }
 
 .card-1 .content-1 .course-wrapper {
@@ -212,23 +212,28 @@
     flex-direction: column;
     padding: 0.7em;
     line-height: 1.7em;
-    margin: 1em;
+    margin: 0em;
 }
 
 .card-1 .content-1 .rectangle-322 {
     background: rgba(5, 205, 153, 0.5);
-    border-radius: 8px;
+    border-radius: 6px;
     width: 90px;
+    height: 40px;
     text-align: center;
+    justify-content: center;
     color: white;
     margin-bottom: 0.67em;
+    white-space: nowrap;
 }
 
 .card-1 .content-1 .rectangle-322-red {
     background: rgba(205, 5, 5, 0.5);
-    border-radius: 8px;
+    border-radius: 6px;
     width: 90px;
+    height: 40px;
     text-align: center;
+    justify-content: center;
     color: white;
     margin-bottom: 0.67em;
     white-space: nowrap;
@@ -240,6 +245,7 @@
     flex-direction: row;
     margin-left: 1em;
     white-space: nowrap;
+    padding-top:1em ;
 }
 
 .card-2 {
