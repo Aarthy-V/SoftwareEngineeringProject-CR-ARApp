@@ -4,7 +4,15 @@ import makeAnimated from "react-select/animated";
 import "../Styles/DDStyles.css";
 import axios from "axios";
 
-function DropDown({ year, semester, department }) {
+function DropDown({
+  year,
+  semester,
+  department,
+  setYear,
+  setSemester,
+  setDepartment,
+}) {
+  
   const [value1, setValue1] = useState(null);
   const [value2, setValue2] = useState(null);
   const [value3, setValue3] = useState(null);
@@ -75,17 +83,25 @@ function DropDown({ year, semester, department }) {
   }, [value1, value2, value3]);
 
   const submitReview = () => {
-    axios.post("http://localhost:3300/coursesUpdated", {
-      AcYr: value1.value,
-      OfferedSem: value2.value,
-      OfferedDeptID: value3.value,
-    })
-    .then(() => {
-    })
-    .catch((error) => {
-      console.error("Error submitting review:", error);
-    });
+    axios
+      .post("http://localhost:3300/coursesUpdated", {
+        AcYr: value1.value,
+        OfferedSem: value2.value,
+        OfferedDeptID: value3.value,
+      })
+      .then(() => {})
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+      });
   };
+
+  useEffect(() => {
+    if (value1 && value2 && value3) {
+      setYear(value1);
+      setSemester(value2);
+      setDepartment(value3);
+    }
+  }, [value1, value2, value3, setYear, setSemester, setDepartment]);
 
   return (
     <div className="dd-wrapper">
