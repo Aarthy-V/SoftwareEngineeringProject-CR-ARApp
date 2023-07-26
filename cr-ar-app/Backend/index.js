@@ -190,7 +190,7 @@ let updated1 = "";
 app.get("/CHupdated", (req, res) => {
   const sql =
   //"SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
-  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`, ch.`SemStartDate`,ch.`SemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
+  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`,DATE_FORMAT(ch.`SemStartDate`, '%Y-%m-%d') AS `FormattedSemStartDate`,DATE_FORMAT(ch.`SemEndDate`, '%Y-%m-%d') AS `FormattedSemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
