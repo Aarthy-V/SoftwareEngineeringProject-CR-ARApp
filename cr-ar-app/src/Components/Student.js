@@ -157,9 +157,12 @@ const getTableColumns = () => {
   
     const filteredResults = table_data.filter((item) => {
       return (
-        item.Name &&
+        (item.Name && 
         typeof item.Name === "string" &&
-        item.Name.toLowerCase().includes(searchTerm.toLowerCase())
+        item.Name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (item.Registration_No &&
+          typeof item.Registration_No === "string" &&
+          item.Registration_No.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     });
 
