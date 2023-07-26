@@ -13,8 +13,14 @@ import MainHead from "./MainHead";
 import Modal from "./Modal";
 import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
+import { DatePicker, Space } from "antd";
 
 function NewSemester() {
+  // State variables to store the dropdown values in NewSemester
+  const [year, setYear] = useState(null);
+  const [semester, setSemester] = useState(null);
+  const [department, setDepartment] = useState(null);
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const colNames = [
@@ -56,6 +62,40 @@ function NewSemester() {
 
   const handleSubmit = (newRow) => {
     setData([...data, newRow]);
+  };
+
+  const openSemester = () => {
+    console.log("Selected Year:", year);
+    console.log("Selected Semester:", semester);
+    console.log("Selected Department:", department);
+
+    console.log("Semester Start Date:", startSem);
+    console.log("Semester End Date:", endSem);
+    console.log("Registration Start Date:", startReg);
+    console.log("Registration End Date:", endReg);
+
+    
+    
+  };
+
+  const { RangePicker } = DatePicker;
+
+
+  const [startSem, setStartSemi] = useState([]);
+  const [endSem, setEndSemi] = useState([]);
+  const [startReg, setStartReg] = useState([]);
+  const [endReg, setEndReg] = useState([]);
+
+  const onChangeReg = (date, dateString) => {
+    setStartReg(dateString[0]);
+    setEndReg(dateString[1]);
+    console.log(dateString);
+  };
+
+  const onChangeSem = (date, dateString) => {
+    setStartSemi(dateString[0]);
+    setEndSemi(dateString[1]);
+    console.log(dateString);
   };
 
   return (
@@ -105,27 +145,53 @@ function NewSemester() {
       <div className="button-button-wrapper">
         <div className="button-wrapper">
           <div className="button-h1">
-            <button className="button-open-semester">Open Semester</button>
+            <button className="button-open-semester" onClick={openSemester}>
+              Open Semester
+            </button>
           </div>
         </div>
       </div>
       <div className="button-button-wrapper-1">
-        <div className="button-wrapper-1">
-          <div className="button-h2">
-            <button
-              className="button-new-course"
-              onClick={() => setModalOpen(true)}
-            >
-              Add New Course
-            </button>
-            {modalOpen && (
-              <Modal
-                closeModal={() => {
-                  setModalOpen(false);
-                }}
-                onSubmit={handleSubmit}
-              />
-            )}
+        <div className="new-wrapper">
+          <div className="date-w">
+            <div className="date-wrapper">
+              <Space>
+                <RangePicker onChange={onChangeReg} />
+                <RangePicker onChange={onChangeSem} />
+              </Space>
+            </div>
+          </div>
+          <div className="button-wrapper-1">
+            <div className="button-h2">
+              <button
+                className="button-new-course"
+                onClick={() => setModalOpen(true)}
+              >
+                Add New Course
+              </button>
+              {modalOpen && (
+                <Modal
+                  closeModal={() => {
+                    setModalOpen(false);
+                  }}
+                  onSubmit={handleSubmit}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="buttonWrapper1">
+        <div className="hn22">
+          <div className="h-nn">
+            <DropDown
+              year={year}
+              semester={semester}
+              department={department}
+              setYear={setYear}
+              setSemester={setSemester}
+              setDepartment={setDepartment}
+            />
           </div>
         </div>
       </div>

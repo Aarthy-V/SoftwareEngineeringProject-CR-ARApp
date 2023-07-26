@@ -37,12 +37,26 @@ function Modal({ closeModal, onSubmit }) {
     });
   };
 
-  const handleCoordinatorChange = (e) => {
-    setFormState({
-      ...formState,
-      coordinator: e.target.value,
-    });
-  };
+ const handleCoordinatorChange = (e) => {
+   const selectedFullName = e.target.value;
+   // Find the coordinator object with the selected full name
+   const selectedCoordinator = coordinator.find(
+     (coordinator) => coordinator.FullName === selectedFullName
+   );
+
+   // If the coordinator with the selected full name is found, update the form state with their ID
+   if (selectedCoordinator) {
+     setFormState({
+       ...formState,
+       coordinator: selectedCoordinator.StaffID, // Set the ID of the coordinator as the value
+     });
+   } else {
+     setFormState({
+       ...formState,
+       coordinator: "", // Reset to empty string if the coordinator is not found
+     });
+   }
+ };
 
   const handlePrequisteChange = (e) => {
     setFormState({
@@ -155,6 +169,16 @@ function Modal({ closeModal, onSubmit }) {
   const values2 = courseName.map((opts, i) => ({
     value: opts.CourseName,
   }));
+
+ useEffect(() => {
+  // Set the first value of `values2` as the default value for "Course Name"
+  if (values2.length > 0 && !formState.courseName) {
+    setFormState({
+      ...formState,
+      courseName: values2[0].value,
+    });
+  }
+}, [values2, formState.courseName]);
 
   return (
     <>

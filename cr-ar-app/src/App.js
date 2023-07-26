@@ -30,7 +30,8 @@ function App() {
 
   const isHome = pathname === "/";
   const isRegistration = pathname === "/studentRegister";
-  const isProfileview = pathname === "/viewProfile";
+  const isProfileview = pathname.includes("/viewProfile/");
+  const isNewSemester = pathname === "/newsemester";
 
   return (
     <>
@@ -47,9 +48,8 @@ function App() {
         <Route path="/studentRegister" element={<StudentRegister />}></Route>
         <Route path="/viewProfile/:RegNo" element={<ProfileView />}></Route>
       </Routes>
-      {!isHome && !isRegistration && !isProfileview && <SecondaryHome />}
-    
-      {/* <ProfileView/> */}
+      {!isHome && !isRegistration && !isProfileview && !isNewSemester && <SecondaryHome />}
+  
     </>
   );
 }
