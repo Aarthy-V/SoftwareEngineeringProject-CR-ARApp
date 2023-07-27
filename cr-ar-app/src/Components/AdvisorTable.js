@@ -2,12 +2,15 @@ import React, { useState }  from "react";
 import "../Styles/AdvisorTableStyles.css";
 import "../Styles/Tickbox.css";
 import "../Styles/PopupStyles.css";
+import Popup from "./Popup";
+import EditAdvisor from "./EditAdvisorButton";
 import axios from "axios";
 
 function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
     const [advisorHistory, setAdvisorHistory] = useState(null);
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleRowClick = (rowData, index) => {
         setSelectedRow(rowData);
@@ -27,6 +30,16 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
         console.error("Error getting additional information:", error);
         });
     };
+
+    const handleCheckboxChange = () => {
+        setIsChecked((prevChecked) => !prevChecked);
+      };
+    
+      const handleEditAdvisor = () => {
+        if (setIsChecked) {
+          setShowPopup(true);
+        }
+      };
 
     const closePopup = () => {
         setShowPopup(false);
@@ -52,7 +65,9 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
                             <tr className="advexpand" key={index}>
                                 <td>
                                 <label>
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" 
+                                            checked={isChecked} 
+                                            onChange={handleCheckboxChange}/>
                                     <span className="checkbox"></span>
                                 </label>
                                 </td>
@@ -66,6 +81,16 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
                     </tbody>
                 </table>
             )}
+            <EditAdvisor Button onClick={handleEditAdvisor} />
+            {showPopup && isChecked && (
+                <div className="popup">
+                <div className="popup-content">
+                    <h2>Edit Advisor</h2>
+                    <p>Enter the Advisor name :.......................</p>
+                    <button className="close" onClick={closePopup}>X</button>
+                </div>
+                </div>
+      )}
             {showPopup && selectedRow &&  (
                     <div className="popup">
                         <div className="popup-content">
@@ -92,6 +117,7 @@ function AdvisorTable({list, colNames, width = 'auto', height = 'auto'}) {
                         </div>
                     </div>
             )}
+
         </div>
     );
 }
