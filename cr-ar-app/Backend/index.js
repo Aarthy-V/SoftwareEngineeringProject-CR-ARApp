@@ -236,10 +236,9 @@ app.get("/student", (req, res) => {
 
 //advisor details
 
-
 app.get("/advisor", (req, res) => {
   const sql = `
-  SELECT sud.RegNo, sr.FullName,ac.FullName
+  SELECT sud.RegNo, sr.FullName,ac.StaffName
   FROM student_university_details AS sud
   JOIN student_registration AS sr 
   JOIN academicstaff as ac ON sud.RegNo = sr.RegNo AND ac.StaffID=sud.AdvisorID
@@ -258,6 +257,33 @@ app.get("/advisor", (req, res) => {
 
     // Send the result as a response to the client
     return res.status(200).json(result7);
+  });
+});
+
+//advisor history detaills
+
+app.post("/advisorHistory", (req, res) => {
+  const { RegNo } = req.query;
+  console.log("Data sent in the request:",RegNo);
+  const sql =`
+  SELECT ac.StaffName, ah.StartDate, ah.EndDate
+  FROM advisorhistory AS ah 
+  JOIN academicstaff as ac 
+  ON ac.StaffID=ah.AdvisorID
+  WHERE ah.RegNo = ?
+  `;
+;
+  db.query(sql, [RegNo], (err, result8) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Advisor History Data retrieved successfully");
+    console.log("Result:", result8);
+
+    // Send the result as a response to the client
+    return res.status(200).json(result8);
   });
 });
 
