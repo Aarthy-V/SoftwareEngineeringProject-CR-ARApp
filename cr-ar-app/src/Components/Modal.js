@@ -124,6 +124,7 @@ function Modal({ closeModal, onSubmit }) {
   const [coursesCodes, setCourseCodes] = useState([]);
   const [courseName, setCourseNames] = useState([]);
   const [coordinator, setCoordinator] = useState([]);
+  const [prequiste, setPrerequiste] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3300/availableCourseDetails")
@@ -178,7 +179,28 @@ function Modal({ closeModal, onSubmit }) {
       courseName: values2[0].value,
     });
   }
-}, [values2, formState.courseName]);
+ }, [values2, formState.courseName]);
+  
+
+// Prerequiste
+  useEffect(() => {
+    if (formState.courseCode) {
+      fetch(
+        `http://localhost:3300/prerequiste/${encodeURIComponent(
+          formState.courseCode
+        )}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setPrerequiste(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [formState.courseCode]);
+
+  const valuesP = prequiste.map((opts, i) => ({
+    value: opts.PrerequesiteCode,
+  }));
 
   return (
     <>
@@ -283,7 +305,7 @@ function Modal({ closeModal, onSubmit }) {
                   <option value="" disabled>
                     Select Prequiste
                   </option>
-                  {values.map((value, index) => (
+                  {valuesP.map((value, index) => (
                     <option key={index} value={value.value}>
                       {value.value}
                     </option>

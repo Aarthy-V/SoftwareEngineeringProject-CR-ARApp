@@ -447,6 +447,20 @@ app.get("/addCourseForm/:courseCode", (req, res) => {
   });
 });
 
+app.get("/prerequiste/:courseCode", (req, res) => {
+  console.log("Course Code Got from New Semester Page");
+  const courseCode = req.params.courseCode;
+
+  const query = "SELECT * FROM ar_app.prerequesite WHERE CourseCode = ? ";
+  db.query(query, [courseCode], (err, results) => {
+    if (err) {
+      console.error("Error fetching Prerequiste:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    res.json(results);
+  });
+});
+
 
 // Insert New Semester to Course History Table
 
@@ -495,7 +509,7 @@ app.post("/insertNewSemester", (req, res) => {
     console.log("Result:", result);
 
     // Send the result as a response to the client
-    return res.status(200).json(result);
+    return res.status(200).json({ success: true, message: "New Semester Opened Successfully successfully!" });
   });
 });
 
