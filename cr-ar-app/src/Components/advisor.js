@@ -33,7 +33,7 @@ function Advisor(){
         console.log('Search term:', searchTerm);
       };
 
-      const colNames = [' ','REG_NUMBER','NAME','ADVISOR'];
+      const colNames = [' ','REG_NUMBER','ADVISOR'];
 
 
     return (

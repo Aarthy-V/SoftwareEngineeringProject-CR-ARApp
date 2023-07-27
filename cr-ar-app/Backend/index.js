@@ -238,7 +238,7 @@ app.get("/student", (req, res) => {
 
 app.get("/advisor", (req, res) => {
   const sql = `
-  SELECT sud.RegNo, sr.FullName,ac.StaffName
+  SELECT sud.RegNo,ac.FullName
   FROM student_university_details AS sud
   JOIN student_registration AS sr 
   JOIN academicstaff as ac ON sud.RegNo = sr.RegNo AND ac.StaffID=sud.AdvisorID
