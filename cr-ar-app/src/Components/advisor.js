@@ -24,10 +24,6 @@ function Advisor(){
       .catch((err) => console.log(err));
     }, []);
 
-    const handleEditAdvisor = () => {
-        // Handle the "Edit Advisor" button click event
-        console.log('Edit Advisor button clicked');
-      };
     const handleSearch = (searchTerm) => {
         // Perform search logic here using the searchTerm
         console.log('Search term:', searchTerm);
@@ -41,7 +37,7 @@ function Advisor(){
         <MainHead title="Advisors" searchTitle="Search Advisors..." isBtn="0" />
           <AdvisorTable list={AdvisorData} colNames={colNames} />
           <div>
-            <EditAdvisor Button onClick={handleEditAdvisor} />
+          
           </div>
         
       </div>

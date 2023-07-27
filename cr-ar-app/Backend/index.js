@@ -262,7 +262,7 @@ app.get("/advisor", (req, res) => {
 
 //advisor history detaills
 
-app.post("/advisorHistory", (req, res) => {
+app.get("/advisorHistory", (req, res) => {
   const { RegNo } = req.query;
   console.log("Data sent in the request:",RegNo);
   const sql =`
