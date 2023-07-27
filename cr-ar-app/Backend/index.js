@@ -70,8 +70,6 @@ app.get('/departments/:academicYear', (req, res) => {
 });
 
 
-
-
 // New semester course details
 let updated = "Hi";
 let AcYr = "";
@@ -104,6 +102,80 @@ app.get("/updated", (req, res) => {
     return res.json(updated);
 });
 
+let updated9 = "Hi";
+let RegNum="";
+
+app.post("/studentProfileView", (req, res) => {
+  RegNum=req.body.RegNum;
+  const sql ="SELECT sud.AcYr,sud.Semester,sud.DepID,sr.FullName FROM student_university_details AS sud JOIN student_registration AS sr  WHERE sud.RegNo = ? AND sr.RegNo=? ";
+  db.query(sql, [RegNum,RegNum], (err, result9) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student view take successfully");
+    console.log("Result:", result9);
+
+    // Send the result as a response to the client
+    updated9 = result9;
+    return res.status(200).json(result9);
+  });
+});
+
+app.get("/view", (req, res) => {
+  return res.json(updated9);
+});
+
+let RegNum2="";
+let updated10 = "";
+app.post("/studentCourseView", (req, res) => {
+  RegNum2=req.body.RegNum2;
+  const sql = "SELECT cu.CourseName,cr.AdvApproved FROM coursereg AS cr JOIN curriculum AS cu ON cu.CourseCode = cr.CourseCode  WHERE cr.RegNo = ? ";  
+  db.query(sql, [RegNum2], (err, result10) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student course take successfully");
+    console.log("Result:", result10);
+
+    // Send the result as a response to the client
+    updated10 = result10;
+    return res.status(200).json(result10);
+  });
+});
+
+app.get("/viewCourse", (req, res) => {
+    return res.json(updated10);
+});
+
+let RegNum3="";
+let updated11="";
+app.post("/studentBioView", (req, res) => {
+  RegNum3=req.body.RegNum3;
+  const sql = "SELECT Gender,age,DOB,PhNo,PermenantAddr,Race,NIC,Religion FROM student_registration WHERE RegNo = ?;";  
+  db.query(sql, [RegNum3], (err, result11) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("student Bio take successfully");
+    console.log("Result:", result11);
+
+    // Send the result as a response to the client
+    updated11 = result11;
+    return res.status(200).json(updated11);
+  });
+});
+
+app.get("/viewBio", (req, res) => {
+    return res.json(updated11);
+});
+
+
 app.listen(3300, function () {
   console.log("App Listening on port 3300");
   db.connect(function (err) {
@@ -118,7 +190,7 @@ let updated1 = "";
 app.get("/CHupdated", (req, res) => {
   const sql =
   //"SELECT * FROM course_history WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?";
-  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`, ch.`SemStartDate`,ch.`SemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
+  "SELECT ch.`CourseCode`,ch.`CourseName`,ch.`Credit`,ch.`Core/Technical`,s.`FullName`,ch.`PreRequesite`, d.`DepName`,DATE_FORMAT(ch.`SemStartDate`, '%Y-%m-%d') AS `FormattedSemStartDate`,DATE_FORMAT(ch.`SemEndDate`, '%Y-%m-%d') AS `FormattedSemEndDate`,d.`DepName` FROM course_history AS ch JOIN department AS d ON ch.`OfferedDeptID` = d.`DepID` JOIN academicstaff AS s ON ch.`CoordinatorID` = s.`StaffID` WHERE AcYr = ? and OfferedSem = ? and OfferedDeptID = ?" ;
   db.query(sql, [AcYr, OfferedSem, OfferedDeptID], (err, result1) => {
     if (err) {
       console.log("Error:", err);
@@ -336,8 +408,123 @@ app.post("/api/upload", upload.single("excelFile"), (req, res) => {
         // Send a success response to the frontend
         res.status(200).json({ message: "File uploaded and data inserted into the database" });
       });
-    });
+});
+    
 
+
+// New Semester add new Course
+app.get("/availableCourseDetails", (req, res) => {
+  console.log("Available Course Codes");
+  let sql = "SELECT * FROM ar_app.curriculum;";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+    return res.json(results);
+  });
+});
+
+app.get("/availableCoordinators", (req, res) => {
+  console.log("Available Course Codes");
+  let sql = "SELECT * FROM ar_app.academicstaff;";
+  db.query(sql, (err, results) => {
+    if (err) return res.json(err);
+    return res.json(results);
+  });
+});
+
+
+app.get("/addCourseForm/:courseCode", (req, res) => {
+  console.log("Course Code Got from New Semester Page");
+  const courseCode = req.params.courseCode;
+  
+  const query =
+    "SELECT * FROM ar_app.curriculum WHERE CourseCode = ? ";
+  db.query(query, [courseCode], (err, results) => {
+    if (err) {
+      console.error("Error fetching course name:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    res.json(results);
+  });
+});
+
+
+// Insert New Semester to Course History Table
+
+app.post("/insertNewSemester", (req, res) => {
+  const AcYr = req.body.AcYr;
+  const OfferedSem = req.body.OfferedSem;
+  const OfferedDeptID = req.body.OfferedDeptID;
+  const startSem = req.body.startSem;
+  const endSem = req.body.endSem;
+  const startReg = req.body.startReg;
+  const endReg = req.body.endReg;
+  const data = req.body.data;
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return res
+      .status(400)
+      .json({ error: "Invalid data format or empty data array" });
+  }
+
+  const values = data.map((row) => [
+    row.CourseCode,
+    row.CourseName,
+    row.Credit,
+    row["Core/Technical"],
+    row.CoordinatorID,
+    row.Prerequiste,
+    OfferedSem,
+    OfferedDeptID,
+    AcYr,
+    startReg,
+    endReg,
+    startSem,
+    endSem,
+    0, // Set 'Open/Close' value to 0 (assuming it's a numeric field)
+  ]);
+
+  const sql = "INSERT INTO course (CourseCode, CourseName, Credit, \`Core/Technical\`, CoordinatorID, PreRequesite, OfferedSem, OfferedDeptID, AcYr, RegOpenDate, RegCloseDate, SemStartDate, SemEndDate, \`Open/Close\`) VALUES ?";
+
+  db.query(sql, [values], (err, result) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    console.log("Courses table updated successfully");
+    console.log("Result:", result);
+
+    // Send the result as a response to the client
+    return res.status(200).json(result);
+  });
+});
+
+
+    // student register
+
+  let updatedS = "";
+
+  app.post("http://localhost:3300/studentBio", (req, res) => {
+  const formData = req.body;
+  //const {email,indexNo,nic,fname,lname,mathematics,physics,chemistry,english,phno,dob,zscore,rank,address,medium} = formData;
+  const sql =
+  "INSERT INTO student_registration_sample (`Email`, `IndexNo`, `NIC`, `FName`, `LName`, `Mathematics`, `Physics`, `Chemistry`, `English`, `PhoneNum`, `BOB`, `Z-Score`, `Rank`, `Address`, `Medium`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(sql, [formData], (err, resultS) => {
+    if (err) {
+      console.log("Error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+    console.log("Student registration table updated successfully");
+    console.log("Result:", resultS);
+
+    // Send the result as a response to the client
+    updatedS = resultS;
+    return res.status(200).json(resultS);
+    });
+  });
+  app.get("/bio",(req,res)=>{
+    return res.json(updatedS);
+  })
 
 
 
