@@ -29,20 +29,20 @@ function StudentRegister() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Sending data to backend:", formData);
-  
-    // Replace 'http://localhost:3300/studentBio' with the actual URL of your backend API
-    //const backendApiUrl = "http://localhost:3300/studentBio";
-  
-    axios.post("http://localhost:3300/studentBio", formData)
+   
+    axios
+      .post("http://localhost:3300/insertNewStudent", formData)
       .then((response) => {
-        console.log("Data saved to backend:", response.data);
-        // You can handle any additional logic or show success messages here
+        // Handle successful response if needed
+        console.log("Data submitted successfully:", response.data);
       })
       .catch((error) => {
-        console.error("Error saving data to backend:", error);
-        console.error("Error Response Data:", error.response.data);
-        // Handle errors and show error messages if necessary
+        // Handle error if needed
+        console.error("Error submitting data:", error);
       });
+
+
+
   };
   
 
