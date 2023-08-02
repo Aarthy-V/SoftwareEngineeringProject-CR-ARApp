@@ -1,0 +1,112 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+
+
+.box{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 206px;
+    height: 50px;
+    flex-shrink: 0;
+    position: fixed;
+    top: 100px;
+    left: 0%; 
+    color: #009687;
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.6px;
+}
+
+.box .studentTitle{
+    color: #009687;
+    font-family: Work Sans;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.6px;
+}
+.new-student-button {
+    display: flex;
+    width: 132px;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; 
+    flex-shrink: 0;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.13px;
+    background-color: var(--primary-color, #009687);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    top: 50px;
+    margin-left: 1450px;
+
+
+    
+   
+  }
+  
+  .new-student-button:hover {
+    background-color: var(--primary-color-hover, #008478);
+  }
+  
+  .plus-icon {
+    margin-right: 4px; 
+    font-size: 18px;
+  }
+  
+  .button-text {
+    margin-left: 4px; 
+  }
+
+.Dropdown-wrapper{
+  border: 0px none;
+  height: 750px;
+  width: 1800px;
+
+}
+
+.box-2{
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0 0px;
+  width: 100px;
+  height: 60px;
+  position: fixed;
+  top: 150px;
+  left: 2%;
+}
+
+.h-2{
+  display: grid;
+  grid-template-columns: repeat(3,250px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+  
+}
+
+
+
+  

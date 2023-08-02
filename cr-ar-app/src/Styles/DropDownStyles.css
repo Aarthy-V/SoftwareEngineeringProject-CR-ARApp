@@ -22,13 +22,14 @@ body{
   position: relative;
   display: flex;
   align-items: center;
+  
 }
 
 .dropdown .dropdown-btn{
   padding: 8px 20px;
   width: 200px;
-  background: #F2F8FF;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.01);
+  background: #FFFFFF;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 10px;
   font-weight: 500px;
   color: black;

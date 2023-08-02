@@ -1,0 +1,26 @@
+.estyle{
+
+    margin: 10px auto;
+    position: fixed;
+    display: flex;
+    align-items: center;
+
+    top: 15%;
+    left: 85%;
+
+    padding: 8px 20px;
+    background: #FFFFFF;
+  
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.01);
+    border-radius: 10px;
+    font-weight: 500px;
+    color: black;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+
+    width: 10px;
+    height: 40px;
+    flex-shrink: 0;
+}
+

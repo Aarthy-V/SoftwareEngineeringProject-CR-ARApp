@@ -1,0 +1,30 @@
+.advbtnstyle{
+    position:fixed;
+    top: 93%;
+    margin-left: 87%;
+    display: flex;
+    width: 132px;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; 
+    flex-shrink: 0;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.13px;
+    background-color: var(--primary-color, #009687);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    
+}
+
+
+

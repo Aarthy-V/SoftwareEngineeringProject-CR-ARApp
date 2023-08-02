@@ -9,7 +9,7 @@ function DropDownSemester() {
     return ( 
     <div className="dropdown">
       <div className="dropdown-btn" onClick={e => setIsActive(!isActive)}>
-        Choose Semester
+         Semester
         <FontAwesomeIcon icon={faCaretDown} className="icon" />
       </div>
       {isActive && (

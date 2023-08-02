@@ -1,0 +1,199 @@
+.search-bar-search-bar {
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    gap: 54px;
+    width: 100%;
+    position: fixed;
+    top: 115px;
+  }
+  
+  .search-bar-frame-5077x {
+    font-weight: 500px;
+    text-align: left;
+    color: rgba(0, 150, 135, 1);
+    font-family: Work Sans;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    height: 42px;
+  }
+  
+  .search-bar-students {
+    width: 130px;
+    letter-spacing: -0.02em;
+    font-size: 30px;
+    padding-left: 90px;
+  }
+  
+  .search-bar-calendar-calendar_days-1 {
+    height: 24px;
+    width: 25px;
+  }
+  
+  .search-bar-search-search_box {
+    font-weight: 400px;
+    text-align: left;
+    color: rgba(0, 150, 135, 1);
+    font-family: Work Sans;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-sizing: border-box;
+    height: 42px;
+    width: 1200px;
+  }
+  
+  .search-bar-frame-5083x {
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 0px 1px rgba(0, 150, 135, 1) inset;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    gap: 35px;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 512px;
+    padding-top: 10px;
+  }
+  
+  .search-bar-interface-search_magnifying_glass-1 {
+    height: 20px;
+    width: 21px;
+  }
+  
+  .search-bar-search-students {
+    width: 128px;
+    letter-spacing: -0.02em;
+    font-size: 15px;
+  }
+  
+  .search-bar-button {
+    font-weight: 600px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    font-family: Poppins;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-sizing: border-box;
+    height: 42px;
+    width: 250px;
+  }
+  
+  .search-bar-frame {
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 9px;
+    padding-left: 30px;
+    padding-right: 8px;
+    padding-top: 9px;
+  }
+
+  .button-wrapper{
+    left: 500px;
+  }
+  
+  .search-bar-new-student {
+    margin-left: -4px;
+    letter-spacing: 0.01em;
+    font-size: 13px;
+    width: 132px;
+  }
+  
+.box {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.box .rectangle-wrapper {
+  border: 0px none;
+  height: 42px;
+  width: 164px;
+}
+
+.box .rectangle {
+  background: linear-gradient(180deg, rgb(0, 150, 135) 0%, rgb(8.37, 200.81, 181.57) 100%);
+  border-radius: 8px;
+  height: 40px;
+  left: 85%;
+  position: fixed;
+  top: 101px;
+  width: 164px;
+  outline: none;
+  border: none;
+}
+
+.rectangle:hover{
+  background: linear-gradient(360deg, rgb(0, 150, 135) 0%, rgb(8.37, 200.81, 181.57) 100%);
+  cursor: pointer;
+}
+
+.box .text-wrapper-3 {
+    color: #ffffff;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 14px;
+    font-weight: 500;
+    height: 21px;
+    letter-spacing: 0.5px;
+    line-height: 20.4px;
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    margin-top: 0.18rem;
+    margin-left: 0rem;
+}
+
+.plus-icon {
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 0.35rem;
+  margin-left: -6.6rem;
+}
+
+
+.box-1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0px;
+    height: 60px;
+    position: fixed;
+    top: 166px;
+    left: 0;
+}
+
+.h-1{
+    display: grid;
+    grid-template-columns: repeat(3,220px);
+    grid-gap: 5px;
+    list-style: none;
+    align-items: center;
+    text-align: center;
+    justify-content: end;
+    white-space: nowrap;
+    letter-spacing: -0.4px;
+    font-weight: 500;
+}
+
+.dropdown-wrapper{
+  padding-left: 520px;
+}
+
+
+

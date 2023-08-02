@@ -1,0 +1,150 @@
+.Ctable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #F2F8FF;
+
+}
+
+.Crow{
+    width: 1800px;
+    height: 51px;
+    flex-shrink: 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+
+}
+.dataRow{
+
+    height: 64px;
+    flex-shrink: 0;
+    fill: var(--white, #FFF);
+}
+
+.dataCell{
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.numColumn{
+    width: 18px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.codeColumn{
+    width: 40px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.nameColumn{
+    width: 40px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.ctColumn{
+    width: 117px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.creditColumn{
+    width: 70px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.coorColumn{
+    width: 111px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.preColumn{
+    width: 40px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.regColumn{
+    width: 200px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}
+
+.statusColumn{
+    width: 60px;
+    flex-shrink: 0;
+
+    color: var(--gray, #69686A);
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.4px;
+}

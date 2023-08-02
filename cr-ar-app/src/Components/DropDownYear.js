@@ -9,7 +9,7 @@ function DropDownYear() {
     return ( 
     <div className="dropdown">
       <div className="dropdown-btn" onClick={e => setIsActive(!isActive)}>
-        Choose Academic Year
+        Academic Year
         <FontAwesomeIcon icon={faCaretDown} className="icon" />
       </div>
       {isActive && (

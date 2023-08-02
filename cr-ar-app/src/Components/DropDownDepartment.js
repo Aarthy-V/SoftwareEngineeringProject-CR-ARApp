@@ -9,7 +9,7 @@ function DropDownDepartment() {
     return ( 
     <div className="dropdown">
       <div className="dropdown-btn" onClick={e => setIsActive(!isActive)}>
-        Choose Department
+         Department
         <FontAwesomeIcon icon={faCaretDown} className="icon" />
       </div>
       {isActive && (

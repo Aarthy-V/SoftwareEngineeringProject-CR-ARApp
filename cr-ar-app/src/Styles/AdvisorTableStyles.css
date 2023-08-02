@@ -1,0 +1,81 @@
+
+.advtable-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F2F8FF;
+}
+
+.advtable{
+    display: block;
+    border-collapse: collapse;
+    overflow: hidden;
+    table-layout: fixed;
+    border-radius: 10px;
+    white-space: nowrap;
+    max-height: 710px;
+    width: 90%;
+    max-width: 100%;
+    overflow-y: scroll;
+    margin: auto;
+    filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.2));
+    position: fixed;
+    top: 240px;
+    left: 16%;
+}
+
+.advtable thead{
+    background-color: var(--white, #FFF);
+    color: var(--gray, #69686A);
+    position: sticky; /* Keep the header fixed */
+    top: 0px; /* Position it at the top of the wrapper */
+    z-index: 1;
+}
+
+
+.advtable tbody{
+    background-color: var(--white, #FFF);
+    color: var(--gray, #69686A);
+}
+
+.advtable thead th:nth-child(1),
+.advtable tbody td:nth-child(1) {
+  width:  5em;
+}
+
+.advtable thead th:nth-child(2),
+.advtable tbody td:nth-child(2) {
+  width: 25em;
+}
+
+.advtable thead th:nth-child(3),
+.advtable tbody td:nth-child(3) {
+  width: 25em;
+}
+
+.advtable thead th:nth-child(4),
+.advtable tbody td:nth-child(4) {
+  width: 25em;
+}
+
+.advtable th, 
+.advtable td{
+    padding: 0.8rem;
+    text-align: left;
+} 
+
+.advtable td{
+    border-top: 0.5px solid #ddd;
+    overflow-y: hidden;
+    text-overflow: ellipsis; 
+}
+
+.advtable tbody tr:hover{
+    background-color: #F2F8FF;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
+}
+
+.advexpand{
+    width: 16%;
+}

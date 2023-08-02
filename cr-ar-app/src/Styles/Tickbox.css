@@ -1,0 +1,23 @@
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom checkbox style */
+  .checkbox {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 1px solid#009687;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  
+  /* Change the background color of the checkbox when it is checked */
+  input[type="checkbox"]:checked + .checkbox {
+    background-color:#009687
+  }
+  

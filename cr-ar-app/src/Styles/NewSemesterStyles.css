@@ -1,0 +1,354 @@
+.search-bar-search-bar {
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  gap: 0px;
+  width: 100%;
+  position: fixed;
+  top: 100px;
+}
+
+.search-bar-frame-5077x {
+  font-weight: 500px;
+  text-align: center;
+  color: rgba(0, 150, 135, 1);
+  font-family: Work Sans;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 62px;
+  width: 100px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.search-bar-students {
+  width: 350px;
+  letter-spacing: -0.02em;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.box-n {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0px;
+  height: 60px;
+  position: fixed;
+  top: 166px;
+  left: 0;
+}
+
+.h-n {
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+.dropdown-wrapper-n {
+  padding-left: 100px;
+}
+
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f8ff;
+  top: 100px;
+}
+
+.table {
+  display: block;
+  border-collapse: collapse;
+  overflow: hidden;
+  table-layout: fixed;
+  border-radius: 10px;
+  white-space: nowrap;
+  width: 90%;
+  max-width: 95%;
+  overflow-x: auto;
+  position: fixed;
+}
+
+.table thead {
+  background-color: var(--white, #ffffff);
+  color: var(--gray, #69686a);
+}
+
+.table tbody {
+  background-color: var(--white, #fff);
+  color: var(--gray, #69686a);
+}
+
+.table th,
+.table td {
+  padding: 0.8rem;
+}
+
+.table td {
+  border-top: 0.5px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.table tbody tr:hover {
+  background-color: #f2f8ff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+}
+
+.expand {
+  width: 16%;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0.3rem;
+  color: white;
+  font-weight: bold;
+}
+
+.label-core {
+  background-color: #07af23d7;
+  border-radius: 4px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+}
+
+.label-technical {
+  background-color: rgb(238, 154, 29);
+  border-radius: 4px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+}
+
+.label-remove {
+  background-color: rgba(5,
+      205,
+      153,
+      0.3);
+  /* Adjust the alpha value (0.5) for desired transparency */
+  border-radius: 4px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+  color: rgb(250, 92, 92);
+}
+
+.label-remove:hover {
+  background: linear-gradient(360deg,
+      rgb(0, 150, 135) 0%,
+      rgb(8.37, 200.81, 181.57) 100%);
+  cursor: pointer;
+}
+
+.button-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0px;
+  height: 60px;
+  position: fixed;
+  top: 850px;
+  left: 0;
+}
+
+.button-wrapper {
+  padding-left: 1640px;
+}
+
+.hn2 {
+  padding-left: 96px;
+}
+
+.button-h1 {
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+.button-open-semester {
+  background-color: #009687;
+  border-radius: 16px;
+  width: 180px;
+  height: 38px;
+  border: none;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: medium;
+  box-shadow: 0px 2px 2px #ccc;
+}
+
+.button-open-semester:hover {
+  background: var(--new-green,
+      linear-gradient(135deg, #009687 50%, #08c9b6 100%));
+  cursor: pointer;
+}
+
+.button-button-wrapper-1 {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0px;
+  height: 60px;
+  position: fixed;
+  top: 166px;
+  left: 50%;
+  z-index: 1;
+}
+
+.new-wrapper{
+  display: flex;
+  flex-direction: row;
+  left: 166px;
+}
+
+.button-wrapper-1 {
+  padding-right: 100px;
+}
+
+.button-h2 {
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+.button-new-course {
+  background-color: #009687;
+  border-radius: 10px;
+  width: 180px;
+  height: 39px;
+  border: none;
+  color: #ffffff;
+  font-size: medium;
+  box-shadow: 0px 2px 2px #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  text-decoration: none;
+}
+
+.button-new-course:hover {
+  background: var(--new-green,
+      linear-gradient(135deg, #009687 0%, #08c9b6 100%));
+  cursor: pointer;
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  padding-top: 120px;
+  position: fixed;
+  left: 46%;
+}
+
+.title-wrapper-2 {
+  font-size: 30px;
+  /* Adjust the font size as needed */
+  font-weight: semi-bold;
+  color: #009687;
+}
+
+.h-nn {
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+.hn22 {
+  padding-left: 96px;
+}
+
+.buttonWrapper1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0px;
+  height: 60px;
+  position: fixed;
+  top: 166px;
+  left: 0;
+}
+
+.date-w {
+  display: flex;
+  margin-top: 0px;
+  margin-left: 150px;
+}
+
+.date-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 130px);
+  grid-gap: 5px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+/* Style for the DatePickers */
+.ant-picker {
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  padding: 8px 12px;
+  font-size: 16px;
+  width: 248px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the Space component (space between DatePickers) */
+.ant-space {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

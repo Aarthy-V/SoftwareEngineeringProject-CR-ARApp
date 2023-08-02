@@ -1,0 +1,16 @@
+
+.wrapper{
+    height: 100vh;
+}
+.login{
+    width: 406px;
+    padding: 20px;
+    height: 375.6px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    color: black;
+    background-color: #e1f3f1;
+}
+.mb-3{
+    background-color:#009687;
+}
